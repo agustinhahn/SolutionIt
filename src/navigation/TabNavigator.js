@@ -7,6 +7,9 @@ import Grillas from '../screens/Grillas'
 import Info from '../screens/Info'
 import Stock from '../screens/Stock'
 import TabIcon from '../components/TabIcon';
+import StockStack from './StockStack';
+import InfoStack from './InfoStack';
+import GrillasStack from './GrillasStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,21 +31,21 @@ const TabNavigator = () => {
             />
             <Tab.Screen 
                 name='Grillas'
-                component={Grillas}
+                component={GrillasStack}
                 options={{
                     tabBarIcon: ({ focused }) => <TabIcon icon="clipboard" label="work" focused={focused} />
                 }}
             />
             <Tab.Screen 
                 name='Info'
-                component={Info}
+                component={InfoStack}
                 options={{
                     tabBarIcon: ({ focused }) => <TabIcon icon="info" label="info" focused={focused} />
                 }}
             />
             <Tab.Screen 
                 name='Stock'
-                component={Stock}
+                component={StockStack}
                 options={{
                     tabBarIcon: ({ focused }) => <TabIcon icon="box" label="stock" focused={focused} />
                 }}

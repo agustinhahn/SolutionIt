@@ -1,11 +1,15 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import Header from '../components/Header'
+import { View, Text, FlatList } from 'react-native'
+import stockEquipos from '../data/stock.json'
+import StockItem from '../components/StockItem'
 
 const Stock = () => {
     return (
         <>
-            <Header title="STOCK"/>
+            <FlatList 
+                data={stockEquipos}
+                keyExtractor={item => item.id}
+                renderItem={({item}) => <StockItem item={item}/>}
+            />
         </>
     )
 }

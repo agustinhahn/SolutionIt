@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         overflow: 'hidden',
         elevation: 2,
+        width: "70%"
     },
     header: {
         padding: 16,
