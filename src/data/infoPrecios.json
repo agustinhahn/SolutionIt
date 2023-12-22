@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "titulo": "Fuente poe",
+        "precio": "5000"
+    },
+    {
+        "id": 2,
+        "titulo": "Fuente de Router",
+        "precio": "6000"
+    },
+    {
+        "id": 3,
+        "titulo": "Cable",
+        "precio": "600"
+    }
+]

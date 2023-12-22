@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "titulo": "fibra en efectivo",
+        "precio": "29000"
+    },
+    {
+        "id": 2,
+        "titulo": "fibra con tarjeta",
+        "precio": "38000"
+    },
+    {
+        "id": 3,
+        "titulo": "antena con router",
+        "precio": "50000"
+    },
+    {
+        "id": 4,
+        "titulo": "antena sin router",
+        "precio": "30000"
+    }
+]

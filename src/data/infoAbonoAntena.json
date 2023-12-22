@@ -1,0 +1,17 @@
+[
+    {
+        "id":1,
+        "titulo": "2mb",
+        "precio": "6000"
+    },
+    {
+        "id":2,
+        "titulo": "3mb",
+        "precio": "7000"
+    },
+    {
+        "id":3,
+        "titulo": "6mb",
+        "precio": "8000"
+    }
+]
