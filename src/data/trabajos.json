@@ -1,0 +1,38 @@
+[
+    {
+        "id":1,
+        "numero_cliente": null,
+        "titular": "jose perez",
+        "direccion": "eva peron 1944",
+        "telefono":"378654321",
+        "trabajo": "instalacion fibra optica",
+        "costo": "30000",
+        "info_adicional": "casa blanca",
+        "direccion_ip_precinto": null,
+        "accesspoint_caja": null
+    },
+    {
+        "id":2,
+        "numero_cliente": "005421",
+        "titular": "maricel ramos",
+        "direccion": "liniers 514",
+        "telefono":"56487985",
+        "trabajo": "reparacion",
+        "costo": "4500 + cable",
+        "info_adicional": "cable cortado por albañiles",
+        "direccion_ip_precinto": "10.0.52.21",
+        "accesspoint_caja": "laugeEste"
+    },
+    {
+        "id":3,
+        "numero_cliente": "008852",
+        "titular": "juan gomez",
+        "direccion": "san lorenzo 1114",
+        "telefono":"156123132",
+        "trabajo": "mudanza",
+        "costo": "12000",
+        "info_adicional": "mudar hacia mitre 102",
+        "direccion_ip_precinto": "1212528",
+        "accesspoint_caja": "512"
+    }
+]
