@@ -1,28 +1,88 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, Button, Pressable, StyleSheet } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux'
+import { equipoUsado } from '../features/itSlice'
 
 const FinInstalacion = () => {
 
+    const dispatch = useDispatch()
+
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
-    const [items, setItems] = useState([
-        { label: 'Opción 1', value: 'opcion1' },
-        { label: 'Opción 2', value: 'opcion2' },
-        { label: 'Opción 3', value: 'opcion3' },
+    const [equipo, setEquipo] = useState([
+        { label: 'NANO LOCO AC', value: '1' },
+        { label: 'AIR GRID', value: '7' },
+        { label: 'LITEBEAM AC', value: '3' },
     ]);
+
     return (
-        <View>
+        <View style={styles.container}>
+            <Text style={styles.heading}>COMPLETAR FORMULARIO</Text>
+            <Text style={styles.subheading}>EQUIPO UTILIZADO</Text>
             <DropDownPicker
                 open={open}
                 value={value}
-                items={items}
+                items={equipo}
                 setOpen={setOpen}
                 setValue={setValue}
-                setItems={setItems}
+                setItems={setEquipo}
+                containerStyle={styles.dropdownContainer}
+                style={styles.dropdownStyle}
+                labelStyle={styles.dropdownLabel}
+                selectedItemContainerStyle={styles.selectedItemContainer}
+                placeholder="Seleccionar equipo"
             />
+            <Pressable onPress={() => {
+                dispatch(equipoUsado({ id: value }))}}
+                style={styles.confirmButton}>
+                <Text style={styles.confirmButtonText}>CONFIRMAR</Text>
+            </Pressable>
         </View>
     )
 }
 
 export default FinInstalacion
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 16,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    heading: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 16,
+    },
+    subheading: {
+        fontSize: 18,
+        marginBottom: 8,
+    },
+    dropdownContainer: {
+        width: '100%',
+        marginTop: 8,
+    },
+    dropdownStyle: {
+        backgroundColor: '#fafafa',
+    },
+    dropdownLabel: {
+        fontSize: 16,
+        color: '#333',
+    },
+    selectedItemContainer: {
+        backgroundColor: '#e0e0e0',
+    },
+    confirmButton: {
+        marginTop: 16,
+        padding: 12,
+        backgroundColor: '#4CAF50',
+        borderRadius: 8,
+    },
+    confirmButtonText: {
+        color: '#fff',
+        fontSize: 18,
+        textAlign: 'center',
+    },
+});

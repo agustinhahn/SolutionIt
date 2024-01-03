@@ -1,13 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import TabNavigator from './src/navigation/TabNavigator';
-import Home from './src/screens/Home';
+import { Provider } from 'react-redux'
+import { store } from './src/app/store';
 
 const App = () => {
   return (
     <>
       <StatusBar />
-      <TabNavigator />
+      <Provider store={store} >
+        <TabNavigator />
+      </Provider>
     </>
   );
 }

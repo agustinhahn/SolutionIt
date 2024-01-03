@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Button, Pressable } from 'rea
 import Collapsible from 'react-native-collapsible';
 import { useState } from 'react';
 
-const Acordeon = ({ trabajo,navigation,route }) => {
+const Acordeon = ({ trabajo, navigation, route }) => {
     const [isCollapsed, setIsCollapsed] = useState(true);
 
     const toggleCollapse = () => {
@@ -15,14 +15,15 @@ const Acordeon = ({ trabajo,navigation,route }) => {
                 <Text style={styles.title}>{trabajo.trabajo}</Text>
             </TouchableOpacity>
             <Collapsible collapsed={isCollapsed}>
-                <View>
-                    <Pressable onPress={()=>
-                        navigation.navigate("FinalizarGrilla")
-                    }>
-                        <Text>TERMINADO</Text>
+                <View style={styles.actionsContainer}>
+                    <Pressable
+                        style={[styles.actionButton, styles.terminadoButton]}
+                        onPress={() => navigation.navigate('FinInstalacion')}
+                    >
+                        <Text style={styles.actionButtonText}>TERMINADO</Text>
                     </Pressable>
-                    <Pressable>
-                        <Text>SUSPENDIDO</Text>
+                    <Pressable style={styles.actionButton}>
+                        <Text style={styles.actionButtonText}>SUSPENDIDO</Text>
                     </Pressable>
                 </View>
                 <View style={styles.content}>
@@ -60,6 +61,27 @@ const styles = StyleSheet.create({
     title: {
         color: '#FFFFFF',
         fontSize: 18,
+        fontWeight: 'bold',
+    },
+    actionsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        paddingVertical: 8,
+    },
+    actionButton: {
+        flex: 1,
+        padding: 12,
+        backgroundColor: '#3498DB',
+        borderRadius: 8,
+        marginHorizontal: 8,
+        alignItems: 'center',
+    },
+    terminadoButton: {
+        backgroundColor: '#4CAF50',
+    },
+    actionButtonText: {
+        color: '#FFFFFF',
+        fontSize: 16,
         fontWeight: 'bold',
     },
     content: {

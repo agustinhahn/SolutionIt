@@ -1,8 +1,11 @@
 import { View, Text, FlatList } from 'react-native'
-import stockEquipos from '../data/stock.json'
 import StockItem from '../components/StockItem'
+import { useSelector} from 'react-redux'
 
 const Stock = () => {
+
+    const stockEquipos = useSelector((state) => state.it.value.products)
+
     return (
         <>
             <FlatList 
