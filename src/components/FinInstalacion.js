@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { equipoUsado } from '../features/itSlice'
 
-const FinInstalacion = () => {
+const FinInstalacion = ({navigation, route}) => {
 
     const dispatch = useDispatch()
+    const {idTarea} = route.params //traigo el id de la tarea a finalizar
 
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
@@ -15,6 +16,7 @@ const FinInstalacion = () => {
         { label: 'AIR GRID', value: '7' },
         { label: 'LITEBEAM AC', value: '3' },
     ]);
+
 
     return (
         <View style={styles.container}>
@@ -34,7 +36,11 @@ const FinInstalacion = () => {
                 placeholder="Seleccionar equipo"
             />
             <Pressable onPress={() => {
-                dispatch(equipoUsado({ id: value }))}}
+                dispatch(equipoUsado({ id: value }))
+                //necesito una funcion en dispatch que le pase el id de la tarea y que tome el array completo, se lo elimine y lo pase al otro de finalizado.
+                navigation.navigate('TareaFinalizada')
+            }
+            }
                 style={styles.confirmButton}>
                 <Text style={styles.confirmButtonText}>CONFIRMAR</Text>
             </Pressable>

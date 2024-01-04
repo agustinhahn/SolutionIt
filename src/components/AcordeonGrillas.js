@@ -18,7 +18,7 @@ const Acordeon = ({ trabajo, navigation, route }) => {
                 <View style={styles.actionsContainer}>
                     <Pressable
                         style={[styles.actionButton, styles.terminadoButton]}
-                        onPress={() => navigation.navigate('FinInstalacion')}
+                        onPress={() => navigation.navigate('FinInstalacion',{idTarea: trabajo.id})}
                     >
                         <Text style={styles.actionButtonText}>TERMINADO</Text>
                     </Pressable>

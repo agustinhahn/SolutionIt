@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 import stock from '../data/stock.json'
+import tareas from '../data/trabajos.json'
 
 const initialState = {
     value: {
         products : stock,
+        tareasPendientes : tareas,
+        tareasFinalizadas : []
     }
 }
 

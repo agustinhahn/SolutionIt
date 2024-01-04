@@ -1,26 +1,27 @@
 import { View, Text, FlatList, StyleSheet, Button, Pressable } from 'react-native'
-import AcordeonGrillas from '../components/AcordeonGrillas'
 import { useSelector} from 'react-redux'
+import AcordeonGrillas from './AcordeonGrillas'
 
 
-const Grillas = ({ navigation, route }) => {
+const TareaFinalizada = ({ navigation, route }) => {
 
-    const trabajosPendientes = useSelector((state) => state.it.value.tareasPendientes)
+    const tareasFinalizadas = useSelector((state) => state.it.value.tareasFinalizadas)
 
     return (
         <View style={styles.container}>
             <View style={styles.buttonContainer}>
                 <Pressable 
-                onPress={()=> navigation.navigate("TareaFinalizada")}
                 style={styles.button1}>
                     <Text style={styles.buttonText}>FINALIZADAS</Text>
                 </Pressable>
-                <Pressable style={styles.button2}>
+                <Pressable 
+                onPress={()=> navigation.navigate("Grillas")}
+                style={styles.button2}>
                     <Text style={styles.buttonText}>PENDIENTES</Text>
                 </Pressable>
             </View>
             <FlatList
-                data={trabajosPendientes}
+                data={tareasFinalizadas}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => <AcordeonGrillas trabajo={item} navigation={navigation} route={route} />}
             />
@@ -28,7 +29,7 @@ const Grillas = ({ navigation, route }) => {
     )
 }
 
-export default Grillas
+export default TareaFinalizada
 
 const styles = StyleSheet.create({
     container: {
@@ -46,14 +47,14 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     button1: {
-        backgroundColor: 'red',
+        backgroundColor: 'grey',
         padding: 10,
         borderRadius: 5,
         flex: 1,
         marginHorizontal: 5,
     },
     button2: {
-        backgroundColor: 'grey',
+        backgroundColor: 'red',
         padding: 10,
         borderRadius: 5,
         flex: 1,
