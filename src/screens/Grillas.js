@@ -22,7 +22,7 @@ const Grillas = ({ navigation, route }) => {
             <FlatList
                 data={trabajosPendientes}
                 keyExtractor={item => item.id.toString()}
-                renderItem={({ item }) => <AcordeonGrillas trabajo={item} navigation={navigation} route={route} />}
+                renderItem={({ item }) => <AcordeonGrillas trabajo={item} navigation={navigation} route={route} arrayUsado = {trabajosPendientes} />}
             />
         </View>
     )

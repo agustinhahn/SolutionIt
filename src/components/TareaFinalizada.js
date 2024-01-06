@@ -23,7 +23,7 @@ const TareaFinalizada = ({ navigation, route }) => {
             <FlatList
                 data={tareasFinalizadas}
                 keyExtractor={item => item.id.toString()}
-                renderItem={({ item }) => <AcordeonGrillas trabajo={item} navigation={navigation} route={route} />}
+                renderItem={({ item }) => <AcordeonGrillas trabajo={item} navigation={navigation} route={route} arrayUsado = {tareasFinalizadas}/>}
             />
         </View>
     )

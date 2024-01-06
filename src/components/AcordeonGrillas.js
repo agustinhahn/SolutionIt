@@ -2,9 +2,11 @@ import { View, Text, TouchableOpacity, StyleSheet, Button, Pressable } from 'rea
 import Collapsible from 'react-native-collapsible';
 import { useState } from 'react';
 
-const Acordeon = ({ trabajo, navigation, route }) => {
+const Acordeon = ({ trabajo, navigation, route , arrayUsado}) => {
     const [isCollapsed, setIsCollapsed] = useState(true);
 
+    //tengo que traer un array de los usados aqui y comparar arrayUsado con el. si es true que haga una cosa y sino la otra
+    //esto lo implemento para sacar los botones de las tareas cuando estan en finalizadas.
     const toggleCollapse = () => {
         setIsCollapsed(!isCollapsed);
     };
