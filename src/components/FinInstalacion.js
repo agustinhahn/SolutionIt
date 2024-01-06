@@ -3,6 +3,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { equipoUsado } from '../features/itSlice'
+import {estadoTarea} from "../features/itSlice"
 
 const FinInstalacion = ({navigation, route}) => {
 
@@ -16,7 +17,6 @@ const FinInstalacion = ({navigation, route}) => {
         { label: 'AIR GRID', value: '7' },
         { label: 'LITEBEAM AC', value: '3' },
     ]);
-
 
     return (
         <View style={styles.container}>
@@ -37,6 +37,7 @@ const FinInstalacion = ({navigation, route}) => {
             />
             <Pressable onPress={() => {
                 dispatch(equipoUsado({ id: value }))
+                dispatch(estadoTarea({ idTarea: idTarea}))
                 //necesito una funcion en dispatch que le pase el id de la tarea y que tome el array completo, se lo elimine y lo pase al otro de finalizado.
                 navigation.navigate('TareaFinalizada')
             }

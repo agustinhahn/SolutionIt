@@ -20,10 +20,18 @@ export const itSlice = createSlice({
             if(articulo){
                 articulo.cantidad -=1
             }
+        },
+        estadoTarea : (state, action) =>{
+            const {idTarea} = action.payload;
+            const tareaIndex = state.value.tareasPendientes.findIndex((p) => p.id == idTarea);
+            if(tareaIndex !== -1){
+                const tarea = state.value.tareasPendientes.splice(tareaIndex, 1)[0]
+                state.value.tareasFinalizadas.push(tarea)
+            }
         }
     }
 })
 
-export const {equipoUsado} = itSlice.actions
+export const {equipoUsado, estadoTarea} = itSlice.actions
 
 export default itSlice.reducer
