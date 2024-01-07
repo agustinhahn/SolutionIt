@@ -1,12 +1,15 @@
 import { View, Text, TouchableOpacity, StyleSheet, Button, Pressable } from 'react-native';
 import Collapsible from 'react-native-collapsible';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector} from 'react-redux'
+import {estadoTarea} from "../features/itSlice"
+import { useDispatch } from 'react-redux'
 
 const Acordeon = ({ trabajo, navigation, route , arrayUsado}) => {
+    const trabajosPendientes = useSelector((state) => state.it.value.tareasPendientes)
+
     const [isCollapsed, setIsCollapsed] = useState(true);
 
-    //tengo que traer un array de los usados aqui y comparar arrayUsado con el. si es true que haga una cosa y sino la otra
-    //esto lo implemento para sacar los botones de las tareas cuando estan en finalizadas.
     const toggleCollapse = () => {
         setIsCollapsed(!isCollapsed);
     };
@@ -17,17 +20,24 @@ const Acordeon = ({ trabajo, navigation, route , arrayUsado}) => {
                 <Text style={styles.title}>{trabajo.trabajo}</Text>
             </TouchableOpacity>
             <Collapsible collapsed={isCollapsed}>
-                <View style={styles.actionsContainer}>
-                    <Pressable
-                        style={[styles.actionButton, styles.terminadoButton]}
-                        onPress={() => navigation.navigate('FinInstalacion',{idTarea: trabajo.id})}
-                    >
-                        <Text style={styles.actionButtonText}>TERMINADO</Text>
-                    </Pressable>
-                    <Pressable style={styles.actionButton}>
-                        <Text style={styles.actionButtonText}>SUSPENDIDO</Text>
-                    </Pressable>
-                </View>
+                {
+                    arrayUsado == trabajosPendientes ? (
+                        <View style={styles.actionsContainer}>
+                        <Pressable
+                            style={styles.terminadoButton}
+                            onPress={() => navigation.navigate('FinInstalacion',{idTarea: trabajo.id})}
+                        >
+                            <Text style={styles.actionButtonText}>TERMINADO</Text>
+                        </Pressable>
+                        <Pressable 
+                            style={styles.suspendidoButton}
+                        >
+                            <Text style={styles.actionButtonText}>SUSPENDIDO</Text>
+                        </Pressable>
+                    </View>)
+                    :
+                    null
+                }
                 <View style={styles.content}>
                     <Text style={styles.infoText}>Numero de cliente: {trabajo.numero_cliente}</Text>
                     <Text style={styles.infoText}>Titular: {trabajo.titular}</Text>
@@ -70,15 +80,20 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         paddingVertical: 8,
     },
-    actionButton: {
+    suspendidoButton: {
         flex: 1,
         padding: 12,
-        backgroundColor: '#3498DB',
         borderRadius: 8,
         marginHorizontal: 8,
         alignItems: 'center',
+        backgroundColor: 'orange',
     },
     terminadoButton: {
+        flex: 1,
+        padding: 12,
+        borderRadius: 8,
+        marginHorizontal: 8,
+        alignItems: 'center',
         backgroundColor: '#4CAF50',
     },
     actionButtonText: {

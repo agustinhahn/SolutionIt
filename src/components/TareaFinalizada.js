@@ -47,14 +47,14 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     button1: {
-        backgroundColor: 'grey',
+        backgroundColor: 'red',
         padding: 10,
         borderRadius: 5,
         flex: 1,
         marginHorizontal: 5,
     },
     button2: {
-        backgroundColor: 'red',
+        backgroundColor: 'grey',
         padding: 10,
         borderRadius: 5,
         flex: 1,

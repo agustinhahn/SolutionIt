@@ -1,4 +1,4 @@
-import { View, Text, Button, Pressable, StyleSheet } from 'react-native'
+import { View, Text, Pressable, StyleSheet } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
@@ -45,6 +45,13 @@ const FinInstalacion = ({navigation, route}) => {
                 style={styles.confirmButton}>
                 <Text style={styles.confirmButtonText}>CONFIRMAR</Text>
             </Pressable>
+            <Pressable style={styles.cancelButton}
+                onPress={()=>{
+                    navigation.navigate('Grillas')
+                }}
+            >
+                <Text style={styles.confirmButtonText}>CANCELAR</Text>
+            </Pressable>
         </View>
     )
 }
@@ -85,6 +92,12 @@ const styles = StyleSheet.create({
         marginTop: 16,
         padding: 12,
         backgroundColor: '#4CAF50',
+        borderRadius: 8,
+    },
+    cancelButton: {
+        marginTop: 16,
+        padding: 12,
+        backgroundColor: 'red',
         borderRadius: 8,
     },
     confirmButtonText: {
