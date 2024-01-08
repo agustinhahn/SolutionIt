@@ -1,11 +1,13 @@
 import { View, Text, TouchableOpacity, StyleSheet, Button, Pressable } from 'react-native';
 import Collapsible from 'react-native-collapsible';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector} from 'react-redux'
 import {estadoTarea} from "../features/itSlice"
 import { useDispatch } from 'react-redux'
 
 const Acordeon = ({ trabajo, navigation, route , arrayUsado}) => {
+
+    const dispatch = useDispatch()
     const trabajosPendientes = useSelector((state) => state.it.value.tareasPendientes)
 
     const [isCollapsed, setIsCollapsed] = useState(true);
@@ -31,6 +33,10 @@ const Acordeon = ({ trabajo, navigation, route , arrayUsado}) => {
                         </Pressable>
                         <Pressable 
                             style={styles.suspendidoButton}
+                            onPress={()=>{
+                            dispatch(estadoTarea({ idTarea: trabajo.id}))
+                            navigation.navigate('TareaFinalizada')
+                        }}
                         >
                             <Text style={styles.actionButtonText}>SUSPENDIDO</Text>
                         </Pressable>
