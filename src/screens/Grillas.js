@@ -1,11 +1,11 @@
 import { View, Text, FlatList, StyleSheet, Button, Pressable } from 'react-native'
 import AcordeonGrillas from '../components/AcordeonGrillas'
-import { useSelector} from 'react-redux'
+import { useGetTrabajosQuery} from "../app/services/itServices"
 
 
 const Grillas = ({ navigation, route }) => {
 
-    const trabajosPendientes = useSelector((state) => state.it.value.tareasPendientes)
+    const {data:trabajosPendientes} = useGetTrabajosQuery()
 
     return (
         <View style={styles.container}>

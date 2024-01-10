@@ -1,16 +1,16 @@
 [
     {
-        "id": 1,
+        "id": 0,
         "titulo": "Fuente poe",
         "precio": "5000"
     },
     {
-        "id": 2,
+        "id": 1,
         "titulo": "Fuente de Router",
         "precio": "6000"
     },
     {
-        "id": 3,
+        "id": 2,
         "titulo": "Cable",
         "precio": "600"
     }

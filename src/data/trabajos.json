@@ -1,6 +1,6 @@
 [
     {
-        "id":1,
+        "id":0,
         "numero_cliente": null,
         "titular": "jose perez",
         "direccion": "eva peron 1944",
@@ -12,7 +12,7 @@
         "accesspoint_caja": null
     },
     {
-        "id":2,
+        "id":1,
         "numero_cliente": "005421",
         "titular": "maricel ramos",
         "direccion": "liniers 514",
@@ -24,7 +24,7 @@
         "accesspoint_caja": "laugeEste"
     },
     {
-        "id":3,
+        "id":2,
         "numero_cliente": "008852",
         "titular": "juan gomez",
         "direccion": "san lorenzo 1114",

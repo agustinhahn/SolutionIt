@@ -1,13 +1,14 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
-import Header from '../components/Header'
+import { View, StyleSheet } from 'react-native'
 import Acordeon from '../components/Acordeon'
-import infoPreciosInsta from "../data/infoInsta.json"
-import infoPrecios from "../data/infoPrecios.json"
-import infoAbonoFibra from "../data/infoAbonoFibra.json"
-import infoAbonoAntena from "../data/infoAbonoAntena.json"
+import { useGetInfoAbonoAntenaQuery, useGetInfoAbonoFibraQuery, useGetInfoInstaQuery, useGetInfoPreciosQuery } from '../app/services/itServices'
 
 const Info = () => {
+
+    const {data:infoPrecios} = useGetInfoPreciosQuery()
+    const {data: infoAbonoAntena} = useGetInfoAbonoAntenaQuery()
+    const {data: infoAbonoFibra} = useGetInfoAbonoFibraQuery()
+    const {data: infoPreciosInsta} = useGetInfoInstaQuery()
+
     return (
         <View style={styles.container}>
             <Acordeon tituloAc="Precios instalaciones" valores={infoPreciosInsta} />

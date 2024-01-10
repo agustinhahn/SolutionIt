@@ -1,16 +1,16 @@
 [
     {
-        "id":1,
+        "id":0,
         "titulo": "2mb",
         "precio": "6000"
     },
     {
-        "id":2,
+        "id":1,
         "titulo": "3mb",
         "precio": "7000"
     },
     {
-        "id":3,
+        "id":2,
         "titulo": "6mb",
         "precio": "8000"
     }

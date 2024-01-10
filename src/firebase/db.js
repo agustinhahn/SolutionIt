@@ -1,0 +1,1 @@
+export const base_url = "https://solutionitdb-default-rtdb.firebaseio.com/"
