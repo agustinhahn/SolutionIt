@@ -1,10 +1,11 @@
 import { View, Text, FlatList } from 'react-native'
 import StockItem from '../components/StockItem'
-import { useSelector} from 'react-redux'
+import { useGetStockQuery } from '../app/services/itServices'
+
 
 const Stock = () => {
 
-    const stockEquipos = useSelector((state) => state.it.value.products)
+    const {data: stockEquipos} = useGetStockQuery()
 
     return (
         <>

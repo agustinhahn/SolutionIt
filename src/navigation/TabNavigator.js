@@ -24,28 +24,28 @@ const TabNavigator = () => {
                 }}
             >
                 <Tab.Screen
-                    name="Home"
+                    name="HomeTab"
                     component={Home}
                     options={{
                         tabBarIcon: ({ focused }) => <TabIcon icon="home" label="home" focused={focused} />
                     }}
                 />
                 <Tab.Screen
-                    name='Grillas'
+                    name='GrillasTab'
                     component={GrillasStack}
                     options={{
                         tabBarIcon: ({ focused }) => <TabIcon icon="clipboard" label="work" focused={focused} />
                     }}
                 />
                 <Tab.Screen
-                    name='Info'
+                    name='InfoTab'
                     component={InfoStack}
                     options={{
                         tabBarIcon: ({ focused }) => <TabIcon icon="info" label="info" focused={focused} />
                     }}
                 />
                 <Tab.Screen
-                    name='Stock'
+                    name='StockTab'
                     component={StockStack}
                     options={{
                         tabBarIcon: ({ focused }) => <TabIcon icon="box" label="stock" focused={focused} />
