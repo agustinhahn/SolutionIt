@@ -1,30 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit'
-import stockArticulos from '../data/stock.json'
-import tareas from '../data/trabajos.json'
 
 const initialState = {
     value: {
-        products : stockArticulos,
-        tareasPendientes : tareas,
-        tareasFinalizadas : []
+        products: [],
+        tareasPendientes: [],
+        tareasFinalizadas: []
     }
 }
 
 export const itSlice = createSlice({
-    name:"it",
+
+    name: "it",
     initialState,
-    reducers:{
-        equipoUsado : (state, action) =>{
-            const {id} = action.payload;
-            const articulo = state.value.products.find((p) => p.id == id)
-            if(articulo){
-                articulo.cantidad -=1
-            }
+    reducers: {
+        setProducts: (state, action) => {
+            state.value.products = action.payload
+            console.log(state.value.products)
         },
-        estadoTarea : (state, action) =>{
-            const {idTarea} = action.payload;
+        equipoUsado: (state, action) => {
+            const { id } = action.payload;
+            const updateStock = state.value.products.map((p) => {
+                if(p.id == id){
+                    return{
+                        ...p,
+                        cantidad:p.cantidad -1
+                    }
+                }
+                return p
+            })
+            state.value.products = updateStock
+        },
+        estadoTarea: (state, action) => {
+            const { idTarea } = action.payload;
             const tareaIndex = state.value.tareasPendientes.findIndex((p) => p.id == idTarea);
-            if(tareaIndex !== -1){
+            if (tareaIndex !== -1) {
                 const tarea = state.value.tareasPendientes.splice(tareaIndex, 1)[0]
                 state.value.tareasFinalizadas.push(tarea)
             }
@@ -32,6 +41,6 @@ export const itSlice = createSlice({
     }
 })
 
-export const {equipoUsado, estadoTarea} = itSlice.actions
+export const { equipoUsado, estadoTarea, setProducts } = itSlice.actions
 
 export default itSlice.reducer
