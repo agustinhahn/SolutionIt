@@ -1,1 +1,1 @@
-export const base_url = "https://solutionidbdfinal-default-rtdb.firebaseio.com/"
+export const base_url = "https://bdsolutionid-default-rtdb.firebaseio.com/"

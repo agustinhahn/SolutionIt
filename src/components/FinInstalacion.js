@@ -20,10 +20,6 @@ const FinInstalacion = ({navigation, route}) => {
         { label: 'AIR GRID', value: 0 },
     ]);
 
-    const cambiarStock = () => {
-        cambioStock({id: value, cantidad: 3, titulo: "algo4"})
-    }
-
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>COMPLETAR FORMULARIO</Text>
@@ -42,7 +38,7 @@ const FinInstalacion = ({navigation, route}) => {
                 placeholder="Seleccionar equipo"
             />
             <Pressable onPress={() => {
-                cambiarStock()
+                cambioStock({id: value, cantidad: 9, titulo: "aveeee"})
                 dispatch(equipoUsado({ id: value }))
                 // dispatch(estadoTarea({ idTarea: idTarea}))
                 //necesito una funcion en dispatch que le pase el id de la tarea y que tome el array completo, se lo elimine y lo pase al otro de finalizado.
