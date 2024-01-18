@@ -1,11 +1,22 @@
 import { View, Text, FlatList, StyleSheet, Button, Pressable } from 'react-native'
-import { useSelector} from 'react-redux'
 import AcordeonGrillas from './AcordeonGrillas'
+import { usePostStockMutation } from '../app/services/itServices';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 
 const TareaFinalizada = ({ navigation, route }) => {
-
+    const stockActual = useSelector(state => state.it.value.products)
+    const [triggerPostStock] = usePostStockMutation()
     const tareasFinalizadas = useSelector((state) => state.it.value.tareasFinalizadas)
+    
+    useEffect(()=>{
+        triggerPostStock({
+            id: "1",
+            titulo: "nano loco AC",
+            cantidad: "3",
+        })
+    },[stockActual])
 
     return (
         <View style={styles.container}>

@@ -1,11 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Entypo } from "@expo/vector-icons"
 import Home from '../screens/Home'
-import Grillas from '../screens/Grillas'
-import Info from '../screens/Info'
-import Stock from '../screens/Stock'
 import TabIcon from '../components/TabIcon';
 import StockStack from './StockStack';
 import InfoStack from './InfoStack';

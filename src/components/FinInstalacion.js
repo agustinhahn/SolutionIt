@@ -1,11 +1,15 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker';
-import { useState } from 'react';
+import {  useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { equipoUsado } from '../features/itSlice'
 import {estadoTarea} from "../features/itSlice"
+import { usePostStockMutation } from '../app/services/itServices';
+
 
 const FinInstalacion = ({navigation, route}) => {
+
+    const [cambioStock] = usePostStockMutation()
 
     const dispatch = useDispatch()
     const {idTarea} = route.params //traigo el id de la tarea a finalizar
@@ -13,10 +17,12 @@ const FinInstalacion = ({navigation, route}) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [equipo, setEquipo] = useState([
-        { label: 'NANO LOCO AC', value: '1' },
-        { label: 'AIR GRID', value: '7' },
-        { label: 'LITEBEAM AC', value: '3' },
+        { label: 'AIR GRID', value: 0 },
     ]);
+
+    const cambiarStock = () => {
+        cambioStock({id: value, cantidad: 3, titulo: "algo4"})
+    }
 
     return (
         <View style={styles.container}>
@@ -36,8 +42,9 @@ const FinInstalacion = ({navigation, route}) => {
                 placeholder="Seleccionar equipo"
             />
             <Pressable onPress={() => {
+                cambiarStock()
                 dispatch(equipoUsado({ id: value }))
-                dispatch(estadoTarea({ idTarea: idTarea}))
+                // dispatch(estadoTarea({ idTarea: idTarea}))
                 //necesito una funcion en dispatch que le pase el id de la tarea y que tome el array completo, se lo elimine y lo pase al otro de finalizado.
                 navigation.navigate('TareaFinalizada')
             }

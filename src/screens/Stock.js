@@ -1,20 +1,13 @@
 import { View, Text, FlatList } from 'react-native'
 import StockItem from '../components/StockItem'
-import { useGetStockQuery } from '../app/services/itServices'
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import {setProducts } from '../features/itSlice'
-
+import { useSelector } from 'react-redux'
 
 const Stock = () => {
-    const dispatch = useDispatch();
-    const { data: stockEquipos } = useGetStockQuery()
 
-    useEffect(() => {
-        if (stockEquipos) {
-            dispatch(setProducts(stockEquipos));
-        }
-    }, [stockEquipos, dispatch]);
+    const stockEquipos = useSelector(state => state.it.value.products)
+
+    console.log("hola desde stock")
+    console.log(stockEquipos)
 
     return (
         <>

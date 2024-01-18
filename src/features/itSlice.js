@@ -15,20 +15,16 @@ export const itSlice = createSlice({
     reducers: {
         setProducts: (state, action) => {
             state.value.products = action.payload
-            console.log(state.value.products)
         },
         equipoUsado: (state, action) => {
             const { id } = action.payload;
-            const updateStock = state.value.products.map((p) => {
-                if(p.id == id){
-                    return{
-                        ...p,
-                        cantidad:p.cantidad -1
-                    }
+            const arrayModificado = state.value.products.map((p) => {
+                if(p.id === id){
+                    return {...p, cantidad: p.cantidad -1}
                 }
                 return p
-            })
-            state.value.products = updateStock
+            });
+            state.value.products = arrayModificado
         },
         estadoTarea: (state, action) => {
             const { idTarea } = action.payload;

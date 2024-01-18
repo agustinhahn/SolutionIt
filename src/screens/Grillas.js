@@ -1,11 +1,23 @@
 import { View, Text, FlatList, StyleSheet, Button, Pressable } from 'react-native'
 import AcordeonGrillas from '../components/AcordeonGrillas'
 import { useGetTrabajosQuery} from "../app/services/itServices"
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import {setProducts } from '../features/itSlice'
+import { useGetStockQuery } from '../app/services/itServices'
 
 
 const Grillas = ({ navigation, route }) => {
 
+    const dispatch = useDispatch();
     const {data:trabajosPendientes} = useGetTrabajosQuery()
+    const { data: stockEquipos } = useGetStockQuery()
+
+    useEffect(() => {
+        if (stockEquipos) {
+            dispatch(setProducts(stockEquipos));
+        }
+    }, [stockEquipos, dispatch]);
 
     return (
         <View style={styles.container}>
