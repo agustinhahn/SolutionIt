@@ -6,9 +6,6 @@ const Stock = () => {
 
     const stockEquipos = useSelector(state => state.it.value.products)
 
-    console.log("hola desde stock")
-    console.log(stockEquipos)
-
     return (
         <>
             <FlatList

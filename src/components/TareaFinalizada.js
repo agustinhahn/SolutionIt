@@ -1,12 +1,35 @@
 import { View, Text, FlatList, StyleSheet, Button, Pressable } from 'react-native'
 import AcordeonGrillas from './AcordeonGrillas'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useDeleteTareaMutation, usePostStockMutation , usePostTareaFinalizadaMutation} from '../app/services/itServices';
+import { useEffect } from 'react';
+import { limpiarPutEquipo , limpiarTareaFinalizada } from '../features/itSlice';
+
 
 
 const TareaFinalizada = ({ navigation, route }) => {
-    const stockActual = useSelector(state => state.it.value.products)
+    const dispatch = useDispatch()
+    const [cambioStock] = usePostStockMutation()
+    const [tareaFinalizadaMut] = usePostTareaFinalizadaMutation()
+    const [deleteTarea] = useDeleteTareaMutation()
     const tareasFinalizadas = useSelector((state) => state.it.value.tareasFinalizadas)
+    const tareaFinalizada = useSelector((state) => state.it.value.nuevaTareaFinalizada)
+    const putEquipo = useSelector((state) => state.it.value.putEquipo)
 
+
+    useEffect(()=>{
+        if(putEquipo){
+            cambioStock(putEquipo)
+            dispatch(limpiarPutEquipo)
+        }
+    },[])
+
+    useEffect(()=>{
+        if(tareaFinalizada){
+            deleteTarea({id: tareaFinalizada.id})
+            dispatch(limpiarTareaFinalizada)
+        }
+    },[])
 
     return (
         <View style={styles.container}>

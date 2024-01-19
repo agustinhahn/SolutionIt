@@ -40,7 +40,28 @@ export const itApi = createApi({
                 }
             })
         }),
+        postTareaFinalizada: builder.mutation({
+            query: ({id, costo, direccion, info_adicional, telefono, titular, trabajo}) => ({
+                url: `trabajosFinalizados.json`,
+                method: "POST",
+                body: {
+                    id: id,
+                    costo: costo,
+                    direccion: direccion,
+                    info_adicional : info_adicional,
+                    telefono: telefono,
+                    titular: titular,
+                    trabajo: trabajo
+                }
+            })
+        }),
+        deleteTarea: builder.mutation({
+            query: ({id}) => ({
+                url: `trabajos/${id}.json`,
+                method: "DELETE",
+            })
+        })
     })
 })
 
-export const { useGetInfoAbonoAntenaQuery, usePostStockMutation , useGetInfoAbonoFibraQuery, useGetInfoInstaQuery, useGetInfoPreciosQuery, useGetStockQuery, useGetTrabajosQuery } = itApi
+export const { useGetInfoAbonoAntenaQuery, useDeleteTareaMutation , usePostTareaFinalizadaMutation , usePostStockMutation , useGetInfoAbonoFibraQuery, useGetInfoInstaQuery, useGetInfoPreciosQuery, useGetStockQuery, useGetTrabajosQuery } = itApi

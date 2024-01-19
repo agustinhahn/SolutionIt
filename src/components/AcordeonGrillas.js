@@ -3,12 +3,14 @@ import Collapsible from 'react-native-collapsible';
 import { useState } from 'react';
 import {estadoTarea} from "../features/itSlice"
 import { useDispatch } from 'react-redux'
-import { useGetTrabajosQuery } from '../app/services/itServices';
+import { useSelector } from 'react-redux'
 
 const Acordeon = ({ trabajo, navigation, route , arrayUsado}) => {
 
     const dispatch = useDispatch()
-    const {data: trabajosPendientes} = useGetTrabajosQuery()
+    const trabajosPendientes = useSelector(state => state.it.value.tareasPendientes)
+    const trabajosFinalizados = useSelector(state => state.it.value.tareasFinalizadas)
+
     const [isCollapsed, setIsCollapsed] = useState(true);
 
     const toggleCollapse = () => {

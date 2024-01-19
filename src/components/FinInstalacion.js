@@ -4,13 +4,11 @@ import {  useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { equipoUsado } from '../features/itSlice'
 import {estadoTarea} from "../features/itSlice"
-import { usePostStockMutation } from '../app/services/itServices';
+import { useSelector } from 'react-redux'
 
 
 const FinInstalacion = ({navigation, route}) => {
-
-    const [cambioStock] = usePostStockMutation()
-
+    const stockEquipos = useSelector(state => state.it.value.products)
     const dispatch = useDispatch()
     const {idTarea} = route.params //traigo el id de la tarea a finalizar
 
@@ -18,7 +16,9 @@ const FinInstalacion = ({navigation, route}) => {
     const [value, setValue] = useState(null);
     const [equipo, setEquipo] = useState([
         { label: 'AIR GRID', value: 0 },
+        { label: 'OTRA COSA', value: 1 },
     ]);
+    
 
     return (
         <View style={styles.container}>
@@ -38,9 +38,8 @@ const FinInstalacion = ({navigation, route}) => {
                 placeholder="Seleccionar equipo"
             />
             <Pressable onPress={() => {
-                cambioStock({id: value, cantidad: 9, titulo: "aveeee"})
                 dispatch(equipoUsado({ id: value }))
-                // dispatch(estadoTarea({ idTarea: idTarea}))
+                dispatch(estadoTarea({ idTarea: idTarea}))
                 //necesito una funcion en dispatch que le pase el id de la tarea y que tome el array completo, se lo elimine y lo pase al otro de finalizado.
                 navigation.navigate('TareaFinalizada')
             }
