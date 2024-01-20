@@ -23,7 +23,7 @@ export const itApi = createApi({
             transformResponse: (response) => Object.values(response)
         }),
         getStock: builder.query({
-            query: () => `stocks.json`,
+            query: () => `stock.json`,
             transformResponse: (response) => Object.values(response)
         }),
         getTrabajos: builder.query({
@@ -32,7 +32,7 @@ export const itApi = createApi({
         }),
         postStock: builder.mutation({
             query: ({id, cantidad, titulo}) => ({
-                url: `stocks/${id}.json`,
+                url: `stock/${id}.json`,
                 method: "PUT",
                 body: {
                     id: id,

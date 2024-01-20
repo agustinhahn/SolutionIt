@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         overflow: 'hidden',
         elevation: 2,
-        width: '100%',
+        width: '90%',
+        zIndex: 1
     },
     header: {
         padding: 16,

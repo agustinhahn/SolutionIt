@@ -20,14 +20,14 @@ const TareaFinalizada = ({ navigation, route }) => {
     useEffect(()=>{
         if(putEquipo){
             cambioStock(putEquipo)
-            dispatch(limpiarPutEquipo)
+            dispatch(limpiarPutEquipo())
         }
     },[])
 
     useEffect(()=>{
         if(tareaFinalizada){
             deleteTarea({id: tareaFinalizada.id})
-            dispatch(limpiarTareaFinalizada)
+            dispatch(limpiarTareaFinalizada())
         }
     },[])
 

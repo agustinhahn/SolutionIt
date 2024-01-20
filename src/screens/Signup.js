@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { useSignupMutation } from '../app/services/auth'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../features/auth/authSlice'
-import { signupSchema } from '../validations/signUpSchema'
+import {signupSchema} from "../validations/signupSchema"
 import SubmitButton from '../components/SubmitButton'
 import InputForm from '../components/InputForm'
 

@@ -23,6 +23,11 @@ export const authSlice = createSlice({
                 idToken: null,
                 localId: null
             }
+        },
+        exitUser: (state, action) => {
+            state.value.email = null
+            state.value.idToken = null
+            state.value.localId = null
         }
     },
 })

@@ -1,10 +1,11 @@
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View, Image, Text, Pressable } from 'react-native'
 import { useGetProfileImageQuery } from '../app/services/itServices'
 import { useSelector } from 'react-redux'
 import AddButton from '../components/AddButton'
 
 const MyProfile = ({ navigation }) => {
     const localId = useSelector(state => state.auth.value.localId)
+    const emailData = useSelector(state => state.auth.value.email)
     const { data } = useGetProfileImageQuery(localId)
 
     return (
@@ -14,7 +15,9 @@ const MyProfile = ({ navigation }) => {
                 style={styles.image}
                 resizeMode='cover'
             />
-            <AddButton title={"Add profile picture"} onPress={() => navigation.navigate("ImageSelector")} />
+            <Text>{emailData}</Text>
+            <AddButton title={"Actualizar foto de perfil"} onPress={() => navigation.navigate("ImageSelector")} />
+            <AddButton title={"SALIR"} onPress={()=>console.log("boton para salir")} />
         </View>
     )
 }

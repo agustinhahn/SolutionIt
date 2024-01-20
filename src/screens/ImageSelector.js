@@ -52,7 +52,7 @@ const ImageSelector = ({ navigation }) => {
 
             />
             <AddButton title="Tomar foto" onPress={pickImage} />
-            <AddButton title="Confirm photo" onPress={confirmImage} />
+            <AddButton title="Confirmar foto" onPress={confirmImage} />
         </View>
     )
 }

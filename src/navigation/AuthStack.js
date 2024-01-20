@@ -1,7 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Header from '../Components/Header'
 import Signup from '../screens/Signup'
 import Login from '../screens/Login'
+
+
 const Stack = createNativeStackNavigator()
 
 const AuthStack = () => {
@@ -11,7 +12,7 @@ const AuthStack = () => {
             screenOptions={
                 ({ route }) => {
                     return {
-                        header: () => <Header title="Bienvenido" />
+                        // header: () => <Header title="Bienvenido" />
                     }
                 }
             }
