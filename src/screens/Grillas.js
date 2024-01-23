@@ -26,9 +26,10 @@ const Grillas = ({ navigation, route }) => {
         if(trabajosPendientesData){
             dispatch(setTareasPendientes(trabajosPendientesData))
         }
-    }, [trabajosPendientesData], dispatch)
+    }, [trabajosPendientesData])
 
     const trabajosPendientes = useSelector(state => state.it.value.tareasPendientes)
+    console.log(trabajosPendientes)
     return (
         <View style={styles.container}>
             <View style={styles.buttonContainer}>
@@ -42,10 +43,10 @@ const Grillas = ({ navigation, route }) => {
                 </Pressable>
             </View>
             {
-                trabajosPendientes && trabajosPendientes.length > 0 ? (
+                trabajosPendientes.length > 0 ? (
                     <FlatList
                         data={trabajosPendientes}
-                        keyExtractor={item => item.id.toString()}
+                        keyExtractor={item => (item && item.id) ? item.id.toString() : ''}
                         renderItem={({ item }) => (
                             <View style={styles.centeredContainer}>
                                 <AcordeonGrillas trabajo={item} navigation={navigation} route={route} arrayUsado={trabajosPendientes} />

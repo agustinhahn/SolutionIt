@@ -1,9 +1,9 @@
 import { View, Text, FlatList, StyleSheet, Button, Pressable } from 'react-native'
 import AcordeonGrillas from './AcordeonGrillas'
 import { useSelector, useDispatch } from 'react-redux';
-import { useDeleteTareaMutation, usePostStockMutation , usePostTareaFinalizadaMutation} from '../app/services/itServices';
+import { useDeleteTareaMutation, usePostStockMutation , usePostTareaFinalizadaMutation, useGetTrabajosQuery} from '../app/services/itServices';
 import { useEffect } from 'react';
-import { limpiarPutEquipo , limpiarTareaFinalizada } from '../features/itSlice';
+import { limpiarPutEquipo , limpiarTareaFinalizada , setTareasPendientes} from '../features/itSlice';
 
 
 
@@ -15,6 +15,8 @@ const TareaFinalizada = ({ navigation, route }) => {
     const tareasFinalizadas = useSelector((state) => state.it.value.tareasFinalizadas)
     const tareaFinalizada = useSelector((state) => state.it.value.nuevaTareaFinalizada)
     const putEquipo = useSelector((state) => state.it.value.putEquipo)
+    const trabajosPendientes = useSelector((state) => state.it.value.tareasPendientes)
+    const { data: trabajosPendientesData } = useGetTrabajosQuery()
 
 
     useEffect(()=>{
@@ -27,7 +29,11 @@ const TareaFinalizada = ({ navigation, route }) => {
     useEffect(()=>{
         if(tareaFinalizada){
             deleteTarea({id: tareaFinalizada.id})
+            console.log(trabajosPendientes)
             dispatch(limpiarTareaFinalizada())
+            console.log(trabajosPendientes)
+            dispatch(setTareasPendientes(trabajosPendientesData))
+            console.log(trabajosPendientes)
         }
     },[])
 

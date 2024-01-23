@@ -28,7 +28,8 @@ export const itApi = createApi({
         }),
         getTrabajos: builder.query({
             query: () => `trabajos.json`,
-            transformResponse: (response) => Object.values(response)
+            transformResponse: (response) => Object.values(response),
+            providesTags: ["Task"],
         }),
         postStock: builder.mutation({
             query: ({id, cantidad, titulo}) => ({
@@ -54,13 +55,15 @@ export const itApi = createApi({
                     titular: titular,
                     trabajo: trabajo
                 }
-            })
+            }),
+            invalidatesTags: ["Tasks"]
         }),
         deleteTarea: builder.mutation({
             query: ({id}) => ({
                 url: `trabajos/${id}.json`,
                 method: "DELETE",
-            })
+            }),
+            invalidatesTags: ["Tasks"]
         }),
         postProfileImage: builder.mutation({
             query:({localId, image}) =>({
