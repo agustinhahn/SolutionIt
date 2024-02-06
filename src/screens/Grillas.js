@@ -1,11 +1,10 @@
 import { View, Text, FlatList, StyleSheet, Button, Pressable } from 'react-native'
 import AcordeonGrillas from '../components/AcordeonGrillas'
 import { useGetTrabajosQuery } from "../app/services/itServices"
-import { useDispatch } from 'react-redux'
+import { useDispatch , useSelector} from 'react-redux'
 import { useEffect } from 'react'
 import { setProducts, setTareasPendientes } from '../features/itSlice'
 import { useGetStockQuery } from '../app/services/itServices'
-import { useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 
 
@@ -15,6 +14,7 @@ const Grillas = ({ navigation, route }) => {
     const dispatch = useDispatch();
     const { data: trabajosPendientesData } = useGetTrabajosQuery()
     const { data: stockEquipos } = useGetStockQuery()
+    const tareasFinalizadas = useSelector((state) => state.it.value.tareasFinalizadas)
 
     useEffect(() => {
         if (stockEquipos) {
@@ -26,20 +26,27 @@ const Grillas = ({ navigation, route }) => {
         if(trabajosPendientesData){
             dispatch(setTareasPendientes(trabajosPendientesData))
         }
-    }, [trabajosPendientesData])
+    }, [trabajosPendientesData, tareasFinalizadas])
 
     const trabajosPendientes = useSelector(state => state.it.value.tareasPendientes)
-    console.log(trabajosPendientes)
+
     return (
         <View style={styles.container}>
             <View style={styles.buttonContainer}>
                 <Pressable
-                    onPress={() => navigation.navigate("TareaFinalizada")}
+                    onPress={() =>{
+                        if(tareasFinalizadas.length>0){
+                            navigation.navigate("TareaFinalizada")}
+                        }
+                    } 
                     style={styles.button1}>
                     <Text style={styles.buttonText}>FINALIZADAS</Text>
                 </Pressable>
-                <Pressable style={styles.button2}>
+                <Pressable style={styles.button2} >
                     <Text style={styles.buttonText}>PENDIENTES</Text>
+                </Pressable>
+                <Pressable style={styles.button2}>
+                    <Text style={styles.buttonText}>ACTUALIZAR DATOS</Text>
                 </Pressable>
             </View>
             {

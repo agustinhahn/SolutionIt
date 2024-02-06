@@ -1,16 +1,16 @@
 import { View, Text, TouchableOpacity, StyleSheet, Button, Pressable } from 'react-native';
 import Collapsible from 'react-native-collapsible';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {estadoTarea} from "../features/itSlice"
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
+import Loader from './Loader';
 
 const Acordeon = ({ trabajo, navigation, route , arrayUsado}) => {
 
     const dispatch = useDispatch()
     const trabajosPendientes = useSelector(state => state.it.value.tareasPendientes)
     const trabajosFinalizados = useSelector(state => state.it.value.tareasFinalizadas)
-
     const [isCollapsed, setIsCollapsed] = useState(true);
 
     const toggleCollapse = () => {
@@ -18,9 +18,9 @@ const Acordeon = ({ trabajo, navigation, route , arrayUsado}) => {
     };
 
     return (
-        <View style={styles.container}>
+            <View style={styles.container}>
             <TouchableOpacity onPress={toggleCollapse} style={styles.header}>
-                <Text style={styles.title}>{trabajo.trabajo}</Text>
+            <Text style={styles.title}>{trabajo.trabajo}</Text>
             </TouchableOpacity>
             <Collapsible collapsed={isCollapsed}>
                 {

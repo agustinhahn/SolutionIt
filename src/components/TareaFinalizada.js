@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useDeleteTareaMutation, usePostStockMutation , usePostTareaFinalizadaMutation, useGetTrabajosQuery} from '../app/services/itServices';
 import { useEffect } from 'react';
 import { limpiarPutEquipo , limpiarTareaFinalizada , setTareasPendientes} from '../features/itSlice';
+import Loader from './Loader';
 
 
 
@@ -29,11 +30,8 @@ const TareaFinalizada = ({ navigation, route }) => {
     useEffect(()=>{
         if(tareaFinalizada){
             deleteTarea({id: tareaFinalizada.id})
-            console.log(trabajosPendientes)
             dispatch(limpiarTareaFinalizada())
-            console.log(trabajosPendientes)
-            dispatch(setTareasPendientes(trabajosPendientesData))
-            console.log(trabajosPendientes)
+            console.log(tareasFinalizadas)
         }
     },[])
 
@@ -45,16 +43,27 @@ const TareaFinalizada = ({ navigation, route }) => {
                     <Text style={styles.buttonText}>FINALIZADAS</Text>
                 </Pressable>
                 <Pressable 
-                onPress={()=> navigation.navigate("Grillas")}
+                onPress={()=> {
+                    console.log(trabajosPendientes)
+                    navigation.navigate("Grillas")
+                }}
                 style={styles.button2}>
                     <Text style={styles.buttonText}>PENDIENTES</Text>
                 </Pressable>
             </View>
-            <FlatList
-                data={tareasFinalizadas}
-                keyExtractor={item => item.id.toString()}
-                renderItem={({ item }) => <AcordeonGrillas trabajo={item} navigation={navigation} route={route} arrayUsado = {tareasFinalizadas}/>}
-            />
+            {
+                tareasFinalizadas.length > 0 ? (
+                    <FlatList
+                    data={tareasFinalizadas}
+                    keyExtractor={item => (item && item.id) ? item.id.toString() : ''}
+                    renderItem={({ item }) => <AcordeonGrillas trabajo={item} navigation={navigation} route={route} arrayUsado = {tareasFinalizadas}/>}
+                />
+                ):
+                (
+                    <Loader />
+                )
+            }
+
         </View>
     )
 }

@@ -4,7 +4,7 @@ import { base_url } from "../../firebase/db"
 export const itApi = createApi({
     reducerPath: "itApi",
     baseQuery: fetchBaseQuery({ baseUrl: base_url }),
-    tagTypes:["image"],
+    tagTypes:["image", "Tasks"],
     endpoints: (builder) => ({
         getInfoAbonoAntena: builder.query({
             query: () => `infoAbonoAntena.json`,
@@ -29,7 +29,7 @@ export const itApi = createApi({
         getTrabajos: builder.query({
             query: () => `trabajos.json`,
             transformResponse: (response) => Object.values(response),
-            providesTags: ["Task"],
+            providesTags:["Tasks"]
         }),
         postStock: builder.mutation({
             query: ({id, cantidad, titulo}) => ({
