@@ -65,6 +65,13 @@ export const itApi = createApi({
             }),
             invalidatesTags: ["Tasks"]
         }),
+        postActualizarTareasPendientes: builder.mutation({
+            query:({obj}) => ({
+                url: `trabajos.json`,
+                method: "PUT",
+                body: obj
+            })
+        }),
         postProfileImage: builder.mutation({
             query:({localId, image}) =>({
                 url: `profileImage/${localId}.json`,
@@ -80,4 +87,4 @@ export const itApi = createApi({
     })
 })
 
-export const { useGetInfoAbonoAntenaQuery, useDeleteTareaMutation ,useGetProfileImageQuery,usePostProfileImageMutation, usePostTareaFinalizadaMutation , usePostStockMutation , useGetInfoAbonoFibraQuery, useGetInfoInstaQuery, useGetInfoPreciosQuery, useGetStockQuery, useGetTrabajosQuery } = itApi
+export const { useGetInfoAbonoAntenaQuery, usePostActualizarTareasPendientesMutation ,useDeleteTareaMutation ,useGetProfileImageQuery,usePostProfileImageMutation, usePostTareaFinalizadaMutation , usePostStockMutation , useGetInfoAbonoFibraQuery, useGetInfoInstaQuery, useGetInfoPreciosQuery, useGetStockQuery, useGetTrabajosQuery } = itApi

@@ -1,7 +1,7 @@
 import { View, Text, FlatList, StyleSheet, Button, Pressable } from 'react-native'
 import AcordeonGrillas from './AcordeonGrillas'
 import { useSelector, useDispatch } from 'react-redux';
-import { useDeleteTareaMutation, usePostStockMutation , usePostTareaFinalizadaMutation, useGetTrabajosQuery} from '../app/services/itServices';
+import { useDeleteTareaMutation, usePostStockMutation , usePostTareaFinalizadaMutation, useGetTrabajosQuery, usePostActualizarTareasPendientesMutation} from '../app/services/itServices';
 import { useEffect } from 'react';
 import { limpiarPutEquipo , limpiarTareaFinalizada , setTareasPendientes} from '../features/itSlice';
 import Loader from './Loader';
@@ -12,12 +12,12 @@ const TareaFinalizada = ({ navigation, route }) => {
     const dispatch = useDispatch()
     const [cambioStock] = usePostStockMutation()
     const [tareaFinalizadaMut] = usePostTareaFinalizadaMutation()
+    const [actualizarTareasPendientes] = usePostActualizarTareasPendientesMutation()
     const [deleteTarea] = useDeleteTareaMutation()
-    const tareasFinalizadas = useSelector((state) => state.it.value.tareasFinalizadas)
+    const tareasFinalizadas = useSelector(state => state.it.value.tareasFinalizadas)
     const tareaFinalizada = useSelector((state) => state.it.value.nuevaTareaFinalizada)
     const putEquipo = useSelector((state) => state.it.value.putEquipo)
     const trabajosPendientes = useSelector((state) => state.it.value.tareasPendientes)
-    const { data: trabajosPendientesData } = useGetTrabajosQuery()
 
 
     useEffect(()=>{
@@ -29,9 +29,8 @@ const TareaFinalizada = ({ navigation, route }) => {
 
     useEffect(()=>{
         if(tareaFinalizada){
-            deleteTarea({id: tareaFinalizada.id})
+            actualizarTareasPendientes({obj:trabajosPendientes})
             dispatch(limpiarTareaFinalizada())
-            console.log(tareasFinalizadas)
         }
     },[])
 
@@ -44,7 +43,6 @@ const TareaFinalizada = ({ navigation, route }) => {
                 </Pressable>
                 <Pressable 
                 onPress={()=> {
-                    console.log(trabajosPendientes)
                     navigation.navigate("Grillas")
                 }}
                 style={styles.button2}>
@@ -56,7 +54,11 @@ const TareaFinalizada = ({ navigation, route }) => {
                     <FlatList
                     data={tareasFinalizadas}
                     keyExtractor={item => (item && item.id) ? item.id.toString() : ''}
-                    renderItem={({ item }) => <AcordeonGrillas trabajo={item} navigation={navigation} route={route} arrayUsado = {tareasFinalizadas}/>}
+                    renderItem={({ item }) => (
+                    <View style={styles.centeredContainer}>
+                        <AcordeonGrillas trabajo={item} navigation={navigation} route={route} arrayUsado={tareasFinalizadas}/>
+                    </View>
+                )}
                 />
                 ):
                 (
@@ -74,6 +76,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
+        zIndex: 1
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -102,5 +105,10 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#fff',
         textAlign: 'center',
+    },
+    centeredContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });

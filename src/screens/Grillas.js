@@ -12,9 +12,9 @@ import Loader from '../components/Loader'
 const Grillas = ({ navigation, route }) => {
 
     const dispatch = useDispatch();
-    const { data: trabajosPendientesData } = useGetTrabajosQuery()
+    const { data: trabajosPendientesData, isLoading } = useGetTrabajosQuery()
     const { data: stockEquipos } = useGetStockQuery()
-    const tareasFinalizadas = useSelector((state) => state.it.value.tareasFinalizadas)
+    const tareasFinalizadas = useSelector(state => state.it.value.tareasFinalizadas)
 
     useEffect(() => {
         if (stockEquipos) {
@@ -26,9 +26,12 @@ const Grillas = ({ navigation, route }) => {
         if(trabajosPendientesData){
             dispatch(setTareasPendientes(trabajosPendientesData))
         }
-    }, [trabajosPendientesData, tareasFinalizadas])
+    }, [trabajosPendientesData])
 
     const trabajosPendientes = useSelector(state => state.it.value.tareasPendientes)
+
+
+    if(isLoading) return <Loader />
 
     return (
         <View style={styles.container}>
