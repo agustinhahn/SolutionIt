@@ -1,6 +1,6 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker';
-import {  useState } from 'react';
+import {  useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import { equipoUsado } from '../features/itSlice'
 import {estadoTarea} from "../features/itSlice"
@@ -9,16 +9,25 @@ import { useSelector } from 'react-redux'
 
 const FinInstalacion = ({navigation, route}) => {
     const stockEquipos = useSelector(state => state.it.value.products)
+
     const dispatch = useDispatch()
     const {idTarea} = route.params //traigo el id de la tarea a finalizar
 
+
+
+
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
-    const [equipo, setEquipo] = useState([
-        { label: 'AIR GRID', value: 0 },
-        { label: 'OTRA COSA', value: 1 },
-    ]);
+    const [equipo, setEquipo] = useState([]);
     
+    useEffect(() => {
+        const nuevosEquipos = stockEquipos.map(element => ({
+            label: element.titulo,
+            value: element.id
+        }));
+        setEquipo(nuevosEquipos);
+    }, [stockEquipos]);
+
 
     return (
         <View style={styles.container}>

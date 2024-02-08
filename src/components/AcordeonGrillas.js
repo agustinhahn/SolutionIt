@@ -16,9 +16,7 @@ const Acordeon = ({ trabajo, navigation, route , arrayUsado}) => {
     const toggleCollapse = () => {
         setIsCollapsed(!isCollapsed);
     };
-    console.log(trabajo)
     if(!trabajo) return <Loader />
-    console.log(trabajo)
     return (
             <View style={styles.container}>
             <TouchableOpacity onPress={toggleCollapse} style={styles.header}>

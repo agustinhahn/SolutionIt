@@ -3,8 +3,8 @@ import AcordeonGrillas from '../components/AcordeonGrillas'
 import { useGetTrabajosQuery } from "../app/services/itServices"
 import { useDispatch , useSelector} from 'react-redux'
 import { useEffect } from 'react'
-import { setProducts, setTareasPendientes } from '../features/itSlice'
-import { useGetStockQuery } from '../app/services/itServices'
+import { setProducts, setTareasPendientes, setTareasFinalizadas } from '../features/itSlice'
+import { useGetStockQuery , useGetTareasFinalizadasQuery} from '../app/services/itServices'
 import Loader from '../components/Loader'
 
 
@@ -13,8 +13,15 @@ const Grillas = ({ navigation, route }) => {
 
     const dispatch = useDispatch();
     const { data: trabajosPendientesData, isLoading } = useGetTrabajosQuery()
+    const { data: trabajosFinalizadosData } = useGetTareasFinalizadasQuery()
     const { data: stockEquipos } = useGetStockQuery()
     const tareasFinalizadas = useSelector(state => state.it.value.tareasFinalizadas)
+
+    useEffect(() => {
+        if (trabajosFinalizadosData) {
+            dispatch(setTareasFinalizadas(trabajosFinalizadosData))
+        }
+    }, [trabajosFinalizadosData])
 
     useEffect(() => {
         if (stockEquipos) {
@@ -47,9 +54,6 @@ const Grillas = ({ navigation, route }) => {
                 </Pressable>
                 <Pressable style={styles.button2} >
                     <Text style={styles.buttonText}>PENDIENTES</Text>
-                </Pressable>
-                <Pressable style={styles.button2}>
-                    <Text style={styles.buttonText}>ACTUALIZAR DATOS</Text>
                 </Pressable>
             </View>
             {

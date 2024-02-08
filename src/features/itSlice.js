@@ -5,7 +5,6 @@ const initialState = {
         products: [],
         tareasPendientes: [],
         tareasFinalizadas: [],
-        putEquipo : [],
         nuevaTareaFinalizada : []
     }
 }
@@ -21,6 +20,9 @@ export const itSlice = createSlice({
         setTareasPendientes: (state, action) => {
             state.value.tareasPendientes = action.payload
         },
+        setTareasFinalizadas: (state, action) => {
+            state.value.tareasFinalizadas = action.payload
+        },
         equipoUsado: (state, action) => {
             const { id } = action.payload;
             const arrayModificado = state.value.products.map((p) => {
@@ -30,17 +32,6 @@ export const itSlice = createSlice({
                 return p
             });
             state.value.products = arrayModificado
-            
-            const buscarObjeto = (idObj) =>{
-                const objEncontrado = arrayModificado.find(obj => obj.id === idObj)
-                    if(objEncontrado){
-                        return objEncontrado
-                    }
-            }
-            state.value.putEquipo = buscarObjeto(id)
-        },
-        limpiarPutEquipo: (state, action) => {
-            state.value.putEquipo = []
         },
         estadoTarea: (state, action) => {
             const { idTarea } = action.payload;
@@ -57,6 +48,6 @@ export const itSlice = createSlice({
     }
 })
 
-export const { equipoUsado, estadoTarea, setProducts, setTareasPendientes, limpiarPutEquipo, limpiarTareaFinalizada} = itSlice.actions
+export const { equipoUsado, estadoTarea, setProducts, setTareasPendientes, setTareasFinalizadas, limpiarTareaFinalizada} = itSlice.actions
 
 export default itSlice.reducer

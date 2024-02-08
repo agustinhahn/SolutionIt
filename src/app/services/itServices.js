@@ -4,7 +4,7 @@ import { base_url } from "../../firebase/db"
 export const itApi = createApi({
     reducerPath: "itApi",
     baseQuery: fetchBaseQuery({ baseUrl: base_url }),
-    tagTypes:["image", "Tasks"],
+    tagTypes:["image", "Tasks", "ActStock"],
     endpoints: (builder) => ({
         getInfoAbonoAntena: builder.query({
             query: () => `infoAbonoAntena.json`,
@@ -24,44 +24,31 @@ export const itApi = createApi({
         }),
         getStock: builder.query({
             query: () => `stock.json`,
-            transformResponse: (response) => Object.values(response)
+            transformResponse: (response) => Object.values(response),
+            providesTags:["ActStock"]
         }),
         getTrabajos: builder.query({
             query: () => `trabajos.json`,
             transformResponse: (response) => Object.values(response),
             providesTags:["Tasks"]
         }),
+        getTareasFinalizadas: builder.query({
+            query: () => `trabajosFinalizados.json`,
+            transformResponse: (response) => Object.values(response),
+        }),
         postStock: builder.mutation({
-            query: ({id, cantidad, titulo}) => ({
-                url: `stock/${id}.json`,
+            query: ({obj}) => ({
+                url: `stock.json`,
                 method: "PUT",
-                body: {
-                    id: id,
-                    cantidad: cantidad,
-                    titulo: titulo
-                }
-            })
+                body: obj
+            }),
+            invalidatesTags: ["ActStock"]
         }),
         postTareaFinalizada: builder.mutation({
-            query: ({id, costo, direccion, info_adicional, telefono, titular, trabajo}) => ({
+            query: ({obj}) => ({
                 url: `trabajosFinalizados.json`,
                 method: "POST",
-                body: {
-                    id: id,
-                    costo: costo,
-                    direccion: direccion,
-                    info_adicional : info_adicional,
-                    telefono: telefono,
-                    titular: titular,
-                    trabajo: trabajo
-                }
-            }),
-            invalidatesTags: ["Tasks"]
-        }),
-        deleteTarea: builder.mutation({
-            query: ({id}) => ({
-                url: `trabajos/${id}.json`,
-                method: "DELETE",
+                body: obj
             }),
             invalidatesTags: ["Tasks"]
         }),
@@ -70,7 +57,8 @@ export const itApi = createApi({
                 url: `trabajos.json`,
                 method: "PUT",
                 body: obj
-            })
+            }),
+            invalidatesTags: ["Tasks"]
         }),
         postProfileImage: builder.mutation({
             query:({localId, image}) =>({
@@ -87,4 +75,4 @@ export const itApi = createApi({
     })
 })
 
-export const { useGetInfoAbonoAntenaQuery, usePostActualizarTareasPendientesMutation ,useDeleteTareaMutation ,useGetProfileImageQuery,usePostProfileImageMutation, usePostTareaFinalizadaMutation , usePostStockMutation , useGetInfoAbonoFibraQuery, useGetInfoInstaQuery, useGetInfoPreciosQuery, useGetStockQuery, useGetTrabajosQuery } = itApi
+export const { useGetInfoAbonoAntenaQuery, usePostActualizarTareasPendientesMutation ,useGetProfileImageQuery,usePostProfileImageMutation, usePostTareaFinalizadaMutation , usePostStockMutation , useGetInfoAbonoFibraQuery, useGetInfoInstaQuery, useGetInfoPreciosQuery, useGetStockQuery, useGetTrabajosQuery, useGetTareasFinalizadasQuery } = itApi
