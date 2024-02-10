@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { setProducts, setTareasPendientes, setTareasFinalizadas } from '../features/itSlice'
 import { useGetStockQuery , useGetTareasFinalizadasQuery} from '../app/services/itServices'
 import Loader from '../components/Loader'
+import {colors} from "../global/colors"
 
 
 
@@ -82,7 +83,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
-        zIndex: 1
+        zIndex: 1,
+        backgroundColor: colors.blue4   
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -109,7 +111,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
     },
     buttonText: {
-        color: '#fff',
+        color: colors.blue1,
         textAlign: 'center',
     },
     centeredContainer: {

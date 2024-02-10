@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native'
-
+import {colors} from "../global/colors"
 
 const InputForm = ({ label, value, onChangeText, isSecure, error }) => {
 
@@ -25,17 +25,18 @@ const styles = StyleSheet.create({
     input: {
         width: "90%",
         borderWidth: 0,
-        borderBottomWidth: 3,
-        borderBottomColor: "blue",
-        padding: 2,
-        fontSize: 14,
+        borderBottomWidth: 2,
+        borderBottomColor: colors.blue6,
+        paddingTop: 10,
+        paddingBottom: 10,
+        fontSize: 20,
         marginHorizontal: "5%",
         marginVertical: 10
     },
     titleInput: {
         width: "90%",
         marginHorizontal: "5%",
-        fontSize: 16,
+        fontSize: 20,
     },
     error: {
         fontSize: 16,

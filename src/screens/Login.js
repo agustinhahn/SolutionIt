@@ -5,6 +5,7 @@ import SubmitButton from '../components/SubmitButton'
 import { useLoginMutation } from '../app/services/auth'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../features/auth/authSlice'
+import {colors} from "../global/colors"
 
 
 
@@ -25,9 +26,8 @@ const Login = ({ navigation }) => {
         triggerLogin({ email, password })
     }
     return (
-        <View style={styles.main}>
             <View style={styles.container}>
-                <Text style={styles.title} >Login to start</Text>
+                {/* <Text style={styles.title} >Ingresar</Text> */}
                 <InputForm
                     label="Email"
                     value={email}
@@ -42,13 +42,12 @@ const Login = ({ navigation }) => {
                     isSecure={true}
                     error=""
                 />
-                <SubmitButton onPress={onSubmit} title="Send" />
-                <Text style={styles.sub}>Not have an account?</Text>
+                <SubmitButton onPress={onSubmit} title="Enviar" />
+                <Text style={styles.sub}>Aun no tienes cuenta?</Text>
                 <Pressable onPress={() => navigation.navigate("Signup")} >
-                    <Text style={styles.subLink}>Sign up</Text>
+                    <Text style={styles.subLink}>Registrate</Text>
                 </Pressable>
             </View>
-        </View>
     )
 }
 
@@ -57,28 +56,36 @@ export default Login
 
 
 const styles = StyleSheet.create({
-    main: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
     container: {
-        width: "90%",
-        backgroundColor: "orange",
-        gap: 15,
-        borderRadius: 10,
+        flex: 1,
+        padding: 20,
+        backgroundColor: colors.blue4,
         justifyContent: "center",
         alignItems: "center",
-        paddingVertical: 20
+        paddingVertical: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     title: {
-        fontSize: 22,
+        fontSize: 24,
+        fontWeight: "bold",
+        color: "#333", // Cambiar el color del texto,
+        margin:20
     },
     sub: {
-        fontSize: 14,
+        fontSize: 16,
+        color: "#555", // Cambiar el color del texto
+        marginTop: 5,
     },
     subLink: {
         fontSize: 14,
-        color: "blue"
+        color: "blue",
+        margin: 5
     }
 })

@@ -1,12 +1,13 @@
 import { View, Text, TouchableOpacity, StyleSheet, Button, Pressable } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import { useEffect, useState } from 'react';
-import {estadoTarea} from "../features/itSlice"
+import { estadoTarea } from "../features/itSlice"
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import Loader from './Loader';
+import { colors } from "../global/colors"
 
-const Acordeon = ({ trabajo, navigation, route , arrayUsado}) => {
+const Acordeon = ({ trabajo, navigation, route, arrayUsado }) => {
 
     const dispatch = useDispatch()
     const trabajosPendientes = useSelector(state => state.it.value.tareasPendientes)
@@ -16,45 +17,70 @@ const Acordeon = ({ trabajo, navigation, route , arrayUsado}) => {
     const toggleCollapse = () => {
         setIsCollapsed(!isCollapsed);
     };
-    if(!trabajo) return <Loader />
+    if (!trabajo) return <Loader />
     return (
-            <View style={styles.container}>
+        <View style={styles.container}>
             <TouchableOpacity onPress={toggleCollapse} style={styles.header}>
-            <Text style={styles.title}>{trabajo.trabajo}</Text>
+                <Text style={styles.title}>{trabajo.trabajo}</Text>
             </TouchableOpacity>
             <Collapsible collapsed={isCollapsed}>
                 {
                     arrayUsado == trabajosPendientes ? (
                         <View style={styles.actionsContainer}>
-                        <Pressable
-                            style={styles.terminadoButton}
-                            onPress={() => navigation.navigate('FinInstalacion',{idTarea: trabajo.id})}
-                        >
-                            <Text style={styles.actionButtonText}>TERMINADO</Text>
-                        </Pressable>
-                        <Pressable 
-                            style={styles.suspendidoButton}
-                            onPress={()=>{
-                            dispatch(estadoTarea({ idTarea: trabajo.id}))
-                            navigation.navigate('TareaFinalizada')
-                        }}
-                        >
-                            <Text style={styles.actionButtonText}>SUSPENDIDO</Text>
-                        </Pressable>
-                    </View>)
-                    :
-                    null
+                            <Pressable
+                                style={styles.terminadoButton}
+                                onPress={() => navigation.navigate('FinInstalacion', { idTarea: trabajo.id })}
+                            >
+                                <Text style={styles.actionButtonText}>TERMINADO</Text>
+                            </Pressable>
+                            <Pressable
+                                style={styles.suspendidoButton}
+                                onPress={() => {
+                                    dispatch(estadoTarea({ idTarea: trabajo.id }))
+                                    navigation.navigate('TareaFinalizada')
+                                }}
+                            >
+                                <Text style={styles.actionButtonText}>SUSPENDIDO</Text>
+                            </Pressable>
+                        </View>)
+                        :
+                        null
                 }
                 <View style={styles.content}>
-                    <Text style={styles.infoText}>Numero de cliente: {trabajo.numero_cliente}</Text>
-                    <Text style={styles.infoText}>Titular: {trabajo.titular}</Text>
-                    <Text style={styles.infoText}>Direccion: {trabajo.direccion}</Text>
-                    <Text style={styles.infoText}>Telefono: {trabajo.telefono}</Text>
-                    <Text style={styles.infoText}>Cobrar: {trabajo.costo}</Text>
-                    <Text style={styles.infoText}>Direccion IP/Precinto: {trabajo.direccion_ip_precinto}</Text>
-                    <Text style={styles.infoText}>Accesspoint/Caja: {trabajo.accesspoint_caja}</Text>
-                    <Text style={styles.infoText}>Info adicional: {trabajo.info_adicional}</Text>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.infoTitle}>Número de cliente: </Text>
+                        <Text style={styles.infoText}>{trabajo.numero_cliente}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.infoTitle}>Titular: </Text>
+                        <Text style={styles.infoText}>{trabajo.titular}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.infoTitle}>Dirección: </Text>
+                        <Text style={styles.infoText}>{trabajo.direccion}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.infoTitle}>Teléfono: </Text>
+                        <Text style={styles.infoText}>{trabajo.telefono}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.infoTitle}>Cobrar: </Text>
+                        <Text style={styles.infoText}>{trabajo.costo}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.infoTitle}>Dirección IP/Precinto: </Text>
+                        <Text style={styles.infoText}>{trabajo.direccion_ip_precinto}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.infoTitle}>Accesspoint/Caja: </Text>
+                        <Text style={styles.infoText}>{trabajo.accesspoint_caja}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.infoTitle}>Info adicional: </Text>
+                        <Text style={styles.infoText}>{trabajo.info_adicional}</Text>
+                    </View>
                 </View>
+
             </Collapsible>
         </View>
     );
@@ -74,12 +100,12 @@ const styles = StyleSheet.create({
     },
     header: {
         padding: 16,
-        backgroundColor: '#3498DB',
+        backgroundColor: colors.blue9,
         justifyContent: 'center',
         alignItems: 'center',
     },
     title: {
-        color: '#FFFFFF',
+        color: colors.blue1,
         fontSize: 18,
         fontWeight: 'bold',
     },
@@ -87,6 +113,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         paddingVertical: 8,
+        backgroundColor: colors.blue3
     },
     suspendidoButton: {
         flex: 1,
@@ -94,7 +121,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginHorizontal: 8,
         alignItems: 'center',
-        backgroundColor: 'orange',
+        backgroundColor: colors.blue7,
     },
     terminadoButton: {
         flex: 1,
@@ -102,18 +129,28 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginHorizontal: 8,
         alignItems: 'center',
-        backgroundColor: '#4CAF50',
+        backgroundColor: colors.blue7,
     },
     actionButtonText: {
         color: '#FFFFFF',
-        fontSize: 16,
+        fontSize: 12,
         fontWeight: 'bold',
     },
     content: {
         padding: 16,
+        backgroundColor: colors.blue3
     },
     infoText: {
         marginBottom: 8,
         fontSize: 16,
     },
+    infoTitle: {
+        marginBottom: 4,
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    infoRow: {
+        flexDirection: 'row',
+        marginBottom: 6,
+    }
 });

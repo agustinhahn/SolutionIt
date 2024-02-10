@@ -6,6 +6,7 @@ import { setUser } from '../features/auth/authSlice'
 import {signupSchema} from "../validations/signupSchema"
 import SubmitButton from '../components/SubmitButton'
 import InputForm from '../components/InputForm'
+import { colors } from '../global/colors'
 
 const Signup = ({ navigation }) => {
     const dispatch = useDispatch()
@@ -50,9 +51,9 @@ const Signup = ({ navigation }) => {
 
 
     return (
-        <View style={styles.main}>
+
             <View style={styles.container}>
-                <Text style={styles.title} >Sign up</Text>
+                {/* <Text style={styles.title}>Registrate</Text> */}
                 <InputForm
                     label="Email"
                     value={email}
@@ -61,28 +62,27 @@ const Signup = ({ navigation }) => {
                     error={emailError}
                 />
                 <InputForm
-                    label="Password"
+                    label="clave"
                     value={password}
                     onChangeText={(t) => setPassword(t)}
                     isSecure={true}
                     error={passwordError}
                 />
                 <InputForm
-                    label="Confirm password"
+                    label="Confirmar clave"
                     value={confirmPassword}
                     onChangeText={(t) => setConfirmPassword(t)}
                     isSecure={true}
                     error={confirmPasswordError}
-
                 />
-                <SubmitButton title="Send" onPress={onSubmit}
+                <SubmitButton title="Enviar" onPress={onSubmit}
                 />
-                <Text style={styles.sub}>Alredy have an account?</Text>
+                <Text style={styles.sub}>Ya tienes cuenta ?</Text>
                 <Pressable onPress={() => navigation.navigate("Login")}>
                     <Text style={styles.subLink}>Login</Text>
                 </Pressable>
             </View>
-        </View>
+
     )
 }
 
@@ -91,28 +91,36 @@ export default Signup
 
 
 const styles = StyleSheet.create({
-    main: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
     container: {
-        width: "90%",
-        backgroundColor: "orange",
-        gap: 15,
-        borderRadius: 10,
+        flex: 1,
+        padding: 20,
+        backgroundColor: colors.blue4,
         justifyContent: "center",
         alignItems: "center",
-        paddingVertical: 20
+        paddingVertical: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     title: {
-        fontSize: 22,
+        fontSize: 24,
+        fontWeight: "bold",
+        color: "#333", // Cambiar el color del texto,
+        margin: 20,
     },
     sub: {
-        fontSize: 14,
+        fontSize: 16,
+        color: "#555", // Cambiar el color del texto
+        marginTop: 5,
     },
     subLink: {
         fontSize: 14,
-        color: "blue"
+        color: "blue",
+        margin: 5
     }
 })
