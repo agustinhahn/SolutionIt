@@ -1,5 +1,6 @@
 import { View, StyleSheet } from 'react-native'
 import Acordeon from '../components/Acordeon'
+import {colors} from "../global/colors"
 import { useGetInfoAbonoAntenaQuery, useGetInfoAbonoFibraQuery, useGetInfoInstaQuery, useGetInfoPreciosQuery } from '../app/services/itServices'
 
 const Info = () => {
@@ -23,7 +24,10 @@ export default Info
 
 const styles = StyleSheet.create({
     container: {
-        width: "100%",
-        alignItems:"center"
+        flex: 1,
+        width: '100%',
+        zIndex: 1,
+        backgroundColor: colors.blue4 ,
+        alignItems: 'center', 
     }
 })

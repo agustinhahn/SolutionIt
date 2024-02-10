@@ -22,7 +22,7 @@ const TabNavigator = () => {
                 name='GrillasTab'
                 component={GrillasStack}
                 options={{
-                    tabBarIcon: ({ focused }) => <TabIcon icon="clipboard" label="work" focused={focused} />
+                    tabBarIcon: ({ focused }) => <TabIcon icon="clipboard" label="Tareas" focused={focused} />
                 }}
             />
             <Tab.Screen

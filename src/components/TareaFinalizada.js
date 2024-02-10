@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { usePostStockMutation, usePostTareaFinalizadaMutation, usePostActualizarTareasPendientesMutation } from '../app/services/itServices';
 import { useEffect } from 'react';
 import { limpiarTareaFinalizada } from '../features/itSlice';
-import Loader from './Loader';
+import {colors} from "../global/colors"
 
 
 
@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
-        zIndex: 1
+        zIndex: 1,
+        backgroundColor: colors.blue4 
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
     },
     buttonText: {
-        color: '#fff',
+        color: colors.blue1,
         textAlign: 'center',
     },
     centeredContainer: {
