@@ -6,6 +6,7 @@ import StockStack from './StockStack';
 import InfoStack from './InfoStack';
 import GrillasStack from './GrillasStack';
 import ProfileStack from './ProfileStack';
+import {colors} from "../global/colors"
 
 const Tab = createBottomTabNavigator();
 
@@ -52,19 +53,22 @@ const TabNavigator = () => {
 
 export default TabNavigator
 
-
 const styles = StyleSheet.create({
     tabBar: {
-        backgroundColor: "grey",
+        backgroundColor: colors.backGroundBase ,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: -2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
         elevation: 4,
         position: "absolute",
-        bottom: 25,
-        left: 20,
-        right: 20,
-        borderRadius: 15,
-        height: 90,
-        zIndex: 0
-
-
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 70,
+        paddingHorizontal: 20,
     }
-})
+});

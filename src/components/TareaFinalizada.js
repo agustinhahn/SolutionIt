@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet, Button, Pressable } from 'react-native'
+import { View, Text, FlatList, StyleSheet, Button, Pressable, SafeAreaView  } from 'react-native'
 import AcordeonGrillas from './AcordeonGrillas'
 import { useSelector, useDispatch } from 'react-redux';
 import { usePostStockMutation, usePostTareaFinalizadaMutation, usePostActualizarTareasPendientesMutation } from '../app/services/itServices';
@@ -37,7 +37,7 @@ const TareaFinalizada = ({ navigation, route }) => {
     const tareasFin = useSelector(state => state.it.value.tareasFinalizadas)
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView  style={styles.container}>
             <View style={styles.buttonContainer}>
                 <Pressable
                     style={styles.button1}>
@@ -60,7 +60,7 @@ const TareaFinalizada = ({ navigation, route }) => {
                     </View>
                 )}
             />
-        </View>
+        </SafeAreaView >
     )
 }
 
@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         zIndex: 1,
-        backgroundColor: colors.backGroundBase 
+        backgroundColor: colors.backGroundBase ,
+        marginBottom: 70
     },
     buttonContainer: {
         flexDirection: 'row',

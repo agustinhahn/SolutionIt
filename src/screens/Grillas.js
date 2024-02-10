@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet, Button, Pressable } from 'react-native'
+import { View, Text, FlatList, StyleSheet, Button, Pressable , SafeAreaView } from 'react-native'
 import AcordeonGrillas from '../components/AcordeonGrillas'
 import { useGetTrabajosQuery } from "../app/services/itServices"
 import { useDispatch , useSelector} from 'react-redux'
@@ -42,7 +42,7 @@ const Grillas = ({ navigation, route }) => {
     if(isLoading) return <Loader />
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView  style={styles.container}>
             <View style={styles.buttonContainer}>
                 <Pressable
                     onPress={() =>{
@@ -73,7 +73,7 @@ const Grillas = ({ navigation, route }) => {
                         <Loader />
                     )
             }
-        </View>
+        </SafeAreaView >
     )
 }
 

@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet } from 'react-native'
+import { View, Text, FlatList, StyleSheet, SafeAreaView  } from 'react-native'
 import StockItem from '../components/StockItem'
 import { useSelector } from 'react-redux'
 import { colors } from "../global/colors"
@@ -8,7 +8,7 @@ const Stock = () => {
     const stockEquipos = useSelector(state => state.it.value.products)
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView  style={styles.container}>
             <FlatList
                 data={stockEquipos}
                 keyExtractor={item => (item && item.id) ? item.id.toString() : ''}
@@ -17,7 +17,7 @@ const Stock = () => {
                         <StockItem item={item} />
                     </View>)}
                     />
-        </View>
+        </SafeAreaView >
     )
 }
 
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         backgroundColor: colors.backGroundBase,
+        marginBottom: 70
     },
     centeredContainer: {
         flex: 1,

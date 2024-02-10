@@ -1,22 +1,23 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet , SafeAreaView, FlatList  } from 'react-native'
 import Acordeon from '../components/Acordeon'
 import {colors} from "../global/colors"
-import { useGetInfoAbonoAntenaQuery, useGetInfoAbonoFibraQuery, useGetInfoInstaQuery, useGetInfoPreciosQuery } from '../app/services/itServices'
+import { useGetInfoGeneralQuery } from '../app/services/itServices'
 
 const Info = () => {
 
-    const {data:infoPrecios} = useGetInfoPreciosQuery()
-    const {data: infoAbonoAntena} = useGetInfoAbonoAntenaQuery()
-    const {data: infoAbonoFibra} = useGetInfoAbonoFibraQuery()
-    const {data: infoPreciosInsta} = useGetInfoInstaQuery()
+    const {data:infoGeneral} = useGetInfoGeneralQuery()
 
     return (
-        <View style={styles.container}>
-            <Acordeon tituloAc="Precios instalaciones" valores={infoPreciosInsta} />
-            <Acordeon tituloAc="Precios productos" valores={infoPrecios} />
-            <Acordeon tituloAc="Abonos fibra" valores={infoAbonoFibra} />
-            <Acordeon tituloAc="Abonos antena" valores={infoAbonoAntena} />
-        </View>
+        <SafeAreaView  style={styles.container}>
+            <FlatList
+                data={infoGeneral}
+                keyExtractor={item => (item && item.id) ? item.id.toString() : ''}
+                renderItem={({ item }) =>(
+                    <View style={styles.centeredContainer}>
+                        <Acordeon valores={item.content} tituloAc={item.id} />
+                    </View>)}
+                    />
+        </SafeAreaView >
     )
 }
 
@@ -26,8 +27,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
-        zIndex: 1,
-        backgroundColor: colors.backGroundBase ,
-        alignItems: 'center', 
-    }
+        backgroundColor: colors.backGroundBase,
+        marginBottom: 70
+    },
+    centeredContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 })

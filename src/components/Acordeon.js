@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         elevation: 2,
         width: "90%",
-        marginTop: 30,
+        marginTop: 30
     },
     header: {
         padding: 16,

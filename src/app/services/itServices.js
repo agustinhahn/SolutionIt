@@ -6,20 +6,24 @@ export const itApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: base_url }),
     tagTypes:["image", "Tasks", "ActStock"],
     endpoints: (builder) => ({
-        getInfoAbonoAntena: builder.query({
-            query: () => `infoAbonoAntena.json`,
-            transformResponse: (response) => Object.values(response)
-        }),
-        getInfoAbonoFibra: builder.query({
-            query: () => `infoAbonoFibra.json`,
-            transformResponse: (response) => Object.values(response)
-        }),
-        getInfoInsta: builder.query({
-            query: () => `infoInsta.json`,
-            transformResponse: (response) => Object.values(response)
-        }),
-        getInfoPrecios: builder.query({
-            query: () => "infoPrecios.json",
+        // getInfoAbonoAntena: builder.query({
+        //     query: () => `infoAbonoAntena.json`,
+        //     transformResponse: (response) => Object.values(response)
+        // }),
+        // getInfoAbonoFibra: builder.query({
+        //     query: () => `infoAbonoFibra.json`,
+        //     transformResponse: (response) => Object.values(response)
+        // }),
+        // getInfoInsta: builder.query({
+        //     query: () => `infoInsta.json`,
+        //     transformResponse: (response) => Object.values(response)
+        // }),
+        // getInfoPrecios: builder.query({
+        //     query: () => "infoPrecios.json",
+        //     transformResponse: (response) => Object.values(response)
+        // }),
+        getInfoGeneral: builder.query({
+            query: () => "infoPreciosGenerales.json",
             transformResponse: (response) => Object.values(response)
         }),
         getStock: builder.query({
@@ -75,4 +79,4 @@ export const itApi = createApi({
     })
 })
 
-export const { useGetInfoAbonoAntenaQuery, usePostActualizarTareasPendientesMutation ,useGetProfileImageQuery,usePostProfileImageMutation, usePostTareaFinalizadaMutation , usePostStockMutation , useGetInfoAbonoFibraQuery, useGetInfoInstaQuery, useGetInfoPreciosQuery, useGetStockQuery, useGetTrabajosQuery, useGetTareasFinalizadasQuery } = itApi
+export const { useGetInfoGeneralQuery, usePostActualizarTareasPendientesMutation ,useGetProfileImageQuery,usePostProfileImageMutation, usePostTareaFinalizadaMutation , usePostStockMutation ,  useGetStockQuery, useGetTrabajosQuery, useGetTareasFinalizadasQuery } = itApi
