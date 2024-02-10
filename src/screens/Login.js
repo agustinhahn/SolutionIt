@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: colors.blue4,
+        backgroundColor: colors.gray3,
         justifyContent: "center",
         alignItems: "center",
         paddingVertical: 20,
@@ -80,12 +80,13 @@ const styles = StyleSheet.create({
     },
     sub: {
         fontSize: 16,
-        color: "#555", // Cambiar el color del texto
+        color: colors.gray5,
         marginTop: 5,
     },
     subLink: {
         fontSize: 14,
-        color: "blue",
-        margin: 5
+        color: colors.gray7,
+        margin: 5,
+        fontWeight: 'bold'
     }
 })

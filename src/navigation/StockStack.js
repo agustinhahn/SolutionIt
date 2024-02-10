@@ -12,7 +12,7 @@ const StockStack = () => {
             screenOptions={
                 ({route}) => {
                     return {
-                        header: () => <Header title="STOCK"/>
+                        header: () => <Header title="Stock"/>
                     }
                 }
             }

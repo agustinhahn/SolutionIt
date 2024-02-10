@@ -18,14 +18,14 @@ const styles = StyleSheet.create({
     button: {
         width: "60%",
         margin:  15,
-        backgroundColor: colors.blue6,
+        backgroundColor: colors.gray7,
         padding: 10,
         alignItems: "center",
         borderRadius: 30,
     },
     text: {
         textAlign: "center",
-        color: "white",
+        color: colors.gray1,
         fontSize: 18
     }
 })

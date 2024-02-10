@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { equipoUsado } from '../features/itSlice'
 import {estadoTarea} from "../features/itSlice"
 import { useSelector } from 'react-redux'
+import {colors} from "../global/colors"
 
 
 const FinInstalacion = ({navigation, route}) => {
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
         padding: 16,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: colors.gray3
     },
     heading: {
         fontSize: 24,
@@ -102,13 +104,13 @@ const styles = StyleSheet.create({
     confirmButton: {
         marginTop: 16,
         padding: 12,
-        backgroundColor: '#4CAF50',
+        backgroundColor: colors.confirmButton,
         borderRadius: 8,
     },
     cancelButton: {
         marginTop: 16,
         padding: 12,
-        backgroundColor: 'red',
+        backgroundColor: "#ff4949",
         borderRadius: 8,
     },
     confirmButtonText: {

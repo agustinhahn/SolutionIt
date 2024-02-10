@@ -1,9 +1,9 @@
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import { useState } from 'react';
-import {colors} from "../global/colors"
+import { colors } from "../global/colors"
 
-const Acordeon = ({valores, tituloAc}) => {
+const Acordeon = ({ valores, tituloAc }) => {
     const [isCollapsed, setIsCollapsed] = useState(true);
 
     const toggleCollapse = () => {
@@ -37,19 +37,28 @@ export default Acordeon;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.blue3,
-        borderRadius: 8,
+        backgroundColor: colors.gray2,
         marginVertical: 8,
-        overflow: 'hidden',
         elevation: 2,
         width: "90%",
-        marginTop: 30
+        marginTop: 30,
     },
     header: {
         padding: 16,
-        backgroundColor: colors.blue8,
+        backgroundColor: colors.buttonInfo,
         justifyContent: 'center',
         alignItems: 'center',
+        borderRadius: 5, 
+        // Para Android
+        elevation: 10,
+        // Para iOS
+        shadowColor: colors.sombraButtonInfo,
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
     },
     title: {
         color: '#FFFFFF',

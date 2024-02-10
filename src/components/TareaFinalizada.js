@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         zIndex: 1,
-        backgroundColor: colors.blue4 
+        backgroundColor: colors.backGroundBase 
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -84,14 +84,14 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     button1: {
-        backgroundColor: 'red',
+        backgroundColor: colors.pendientesButton,
         padding: 10,
         borderRadius: 5,
         flex: 1,
         marginHorizontal: 5,
     },
     button2: {
-        backgroundColor: 'grey',
+        backgroundColor: colors.gray4,
         padding: 10,
         borderRadius: 5,
         flex: 1,

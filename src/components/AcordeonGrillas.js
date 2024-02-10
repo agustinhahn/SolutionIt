@@ -90,19 +90,26 @@ export default Acordeon;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#FFFFFF',
-        borderRadius: 8,
         marginVertical: 8,
-        overflow: 'hidden',
-        elevation: 2,
         width: '90%',
-        zIndex: 1
+        zIndex: 1,
     },
     header: {
         padding: 16,
-        backgroundColor: colors.blue9,
+        backgroundColor: colors.lightBlue8,
         justifyContent: 'center',
         alignItems: 'center',
+        borderRadius: 5, 
+        // Para Android
+        elevation: 10,
+        // Para iOS
+        shadowColor: colors.lightBlue6,
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
     },
     title: {
         color: colors.blue1,
@@ -113,7 +120,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         paddingVertical: 8,
-        backgroundColor: colors.blue3
+        backgroundColor: colors.gray2
     },
     suspendidoButton: {
         flex: 1,
@@ -121,7 +128,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginHorizontal: 8,
         alignItems: 'center',
-        backgroundColor: colors.blue7,
+        backgroundColor: "#d19200",
     },
     terminadoButton: {
         flex: 1,
@@ -129,7 +136,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginHorizontal: 8,
         alignItems: 'center',
-        backgroundColor: colors.blue7,
+        backgroundColor: colors.confirmButton,
     },
     actionButtonText: {
         color: '#FFFFFF',
@@ -138,7 +145,7 @@ const styles = StyleSheet.create({
     },
     content: {
         padding: 16,
-        backgroundColor: colors.blue3
+        backgroundColor: colors.gray2,
     },
     infoText: {
         marginBottom: 8,

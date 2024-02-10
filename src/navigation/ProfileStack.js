@@ -12,7 +12,7 @@ const ProfileStack = () => {
             screenOptions={
                 ({ route }) => {
                     return {
-                        header: () => <Header title="PERFIL" />
+                        header: () => <Header title="Perfil" />
                     }
                 }
             }

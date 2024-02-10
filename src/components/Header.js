@@ -13,7 +13,7 @@ export default Header
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.blue6, 
+        backgroundColor: colors.backGroundBase, 
         width: '100%',
         height: 70,
         justifyContent: 'center',
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20, 
         fontWeight: 'bold',
-        color: colors.blue2,
+        color: colors.lightBlue10,
         paddingTop:20
     },
 });

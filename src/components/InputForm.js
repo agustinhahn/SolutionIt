@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     input: {
         width: "90%",
         borderWidth: 0,
-        borderBottomWidth: 2,
-        borderBottomColor: colors.blue6,
+        borderBottomWidth: 1,
+        borderBottomColor: colors.gray5,
         paddingTop: 10,
         paddingBottom: 10,
         fontSize: 20,
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
         width: "90%",
         marginHorizontal: "5%",
         fontSize: 20,
+        color: colors.gray7,
     },
     error: {
         fontSize: 16,
