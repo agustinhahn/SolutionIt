@@ -44,12 +44,12 @@ const styles = StyleSheet.create({
         shadowRadius: 8,
     },
     title: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
         color:colors.gray1
     },
     quantity: {
-        fontSize: 16,
+        fontSize: 18,
         color: colors.gray1,
     },
 });

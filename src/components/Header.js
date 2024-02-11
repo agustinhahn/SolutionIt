@@ -21,9 +21,10 @@ const styles = StyleSheet.create({
         elevation: 4,
     },
     text: {
-        fontSize: 20, 
+        fontSize: 27, 
         fontWeight: 'bold',
         color: colors.lightBlue10,
-        paddingTop:20
+        paddingTop:20,
+        fontFamily: "RobotoSlabMedium"
     },
 });

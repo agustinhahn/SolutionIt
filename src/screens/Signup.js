@@ -98,14 +98,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         paddingVertical: 20,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
     },
     title: {
         fontSize: 24,
@@ -114,14 +106,16 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     sub: {
-        fontSize: 16,
+        fontSize: 12,
         color: colors.gray5,
         marginTop: 5,
+        fontFamily: "RobotoSlabMedium",
     },
     subLink: {
-        fontSize: 14,
+        fontSize: 16,
         color: colors.gray7,
         margin: 5,
+        fontFamily: "RobotoSlabMedium",
         fontWeight: 'bold',
                 // Para Android
                 elevation: 10,

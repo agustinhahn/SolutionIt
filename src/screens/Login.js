@@ -68,17 +68,19 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: "bold",
         color: "#333", // Cambiar el color del texto,
-        margin:20
+        margin:20,
     },
     sub: {
-        fontSize: 16,
+        fontSize: 12,
         color: colors.gray5,
         marginTop: 5,
+        fontFamily: "RobotoSlabMedium",
     },
     subLink: {
-        fontSize: 14,
+        fontSize: 16,
         color: colors.gray7,
         margin: 5,
+        fontFamily: "RobotoSlabMedium",
         fontWeight: 'bold',
                 // Para Android
                 elevation: 10,

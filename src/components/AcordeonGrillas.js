@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: colors.blue1,
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
     },
     actionsContainer: {
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     },
     actionButtonText: {
         color: '#FFFFFF',
-        fontSize: 12,
+        fontSize: 10,
         fontWeight: 'bold',
     },
     content: {

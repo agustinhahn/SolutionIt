@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     },
     textData:{
         margin: 10,
+        fontSize: 14,
         color: colors.gray5
     }
 })

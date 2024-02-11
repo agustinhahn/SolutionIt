@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         width: '100%',
         zIndex: 1,
         backgroundColor: colors.backGroundBase ,
-        marginBottom: 70
+        marginBottom: 50
     },
     buttonContainer: {
         flexDirection: 'row',

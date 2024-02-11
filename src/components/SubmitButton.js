@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     text: {
         textAlign: "center",
         color: colors.gray1,
-        fontSize: 18
+        fontSize: 20,
+        fontFamily: "RobotoSlabMedium",
     }
 })
