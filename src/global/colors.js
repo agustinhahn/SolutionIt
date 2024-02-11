@@ -3,7 +3,7 @@ export const colors = {
     cancelButton: "#ff4949",
     suspendedButton: "#d19200",
     pendientesButton: "#e51d1d",
-    backGroundBase: "ffffff",
+    backGroundBase: "white",
     buttonInfo: "#c6b52c",
     sombraButtonInfo: "#857823",
     blue1:"#f5f7fa",

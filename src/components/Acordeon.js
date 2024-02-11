@@ -45,14 +45,14 @@ const styles = StyleSheet.create({
     },
     header: {
         padding: 16,
-        backgroundColor: colors.buttonInfo,
+        backgroundColor: colors.lightBlue8,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5, 
         // Para Android
         elevation: 10,
         // Para iOS
-        shadowColor: colors.sombraButtonInfo,
+        shadowColor: colors.lightBlue6,
         shadowOffset: {
             width: 0,
             height: 5,

@@ -4,7 +4,7 @@ import InputForm from '../components/InputForm'
 import SubmitButton from '../components/SubmitButton'
 import { useLoginMutation } from '../app/services/auth'
 import { useDispatch } from 'react-redux'
-import { setUser } from '../features/auth/authSlice'
+import { setUser} from '../features/auth/authSlice'
 import {colors} from "../global/colors"
 
 
@@ -59,18 +59,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: colors.gray3,
+        backgroundColor: colors.backGroundBase,
         justifyContent: "center",
         alignItems: "center",
         paddingVertical: 20,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
     },
     title: {
         fontSize: 24,
@@ -87,6 +79,16 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: colors.gray7,
         margin: 5,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+                // Para Android
+                elevation: 10,
+                // Para iOS
+                shadowColor: colors.gray10,
+                shadowOffset: {
+                    width: 0,
+                    height: 5,
+                },
+                shadowOpacity: 0.3,
+                shadowRadius: 5,
     }
 })

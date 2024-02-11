@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         width: "90%"
     },
     card: {
-        backgroundColor: "#ec7d7d",
+        backgroundColor: colors.lightBlue8,
         borderRadius: 8,
         elevation: 2,
         padding: 16,
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         // Para Android
         elevation: 10,
         // Para iOS
-        shadowColor: "#cc3636",
+        shadowColor: colors.lightBlue6,
         shadowOffset: {
             width: 0,
             height: 5,
@@ -46,9 +46,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: 'bold',
+        color:colors.gray1
     },
     quantity: {
         fontSize: 16,
-        color: colors.gray7,
+        color: colors.gray1,
     },
 });

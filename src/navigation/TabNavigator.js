@@ -23,28 +23,28 @@ const TabNavigator = () => {
                 name='GrillasTab'
                 component={GrillasStack}
                 options={{
-                    tabBarIcon: ({ focused }) => <TabIcon icon="clipboard" label="Tareas" focused={focused} />
+                    tabBarIcon: ({ focused }) => <TabIcon icon="list" label="" focused={focused} />
                 }}
             />
             <Tab.Screen
                 name='InfoTab'
                 component={InfoStack}
                 options={{
-                    tabBarIcon: ({ focused }) => <TabIcon icon="info" label="info" focused={focused} />
+                    tabBarIcon: ({ focused }) => <TabIcon icon="info-circle" label="" focused={focused} />
                 }}
             />
             <Tab.Screen
                 name='StockTab'
                 component={StockStack}
                 options={{
-                    tabBarIcon: ({ focused }) => <TabIcon icon="box" label="stock" focused={focused} />
+                    tabBarIcon: ({ focused }) => <TabIcon icon="box" label="" focused={focused} />
                 }}
             />
             <Tab.Screen
                 name='ProfileStack'
                 component={ProfileStack}
                 options={{
-                    tabBarIcon: ({ focused }) => <TabIcon icon="user" label="Perfil" focused={focused} />
+                    tabBarIcon: ({ focused }) => <TabIcon icon="user-alt" label="" focused={focused} />
                 }}
             />
         </Tab.Navigator>
@@ -68,7 +68,8 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        height: 70,
+        height: 55,
+        paddingTop: 15,
         paddingHorizontal: 20,
     }
 });

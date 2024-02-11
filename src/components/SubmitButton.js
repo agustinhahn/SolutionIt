@@ -18,10 +18,20 @@ const styles = StyleSheet.create({
     button: {
         width: "60%",
         margin:  15,
-        backgroundColor: colors.gray7,
+        backgroundColor: colors.lightBlue8,
         padding: 10,
         alignItems: "center",
-        borderRadius: 30,
+        borderRadius: 30, 
+        // Para Android
+        elevation: 10,
+        // Para iOS
+        shadowColor: colors.lightBlue6,
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
     },
     text: {
         textAlign: "center",
