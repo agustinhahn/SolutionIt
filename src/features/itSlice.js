@@ -5,7 +5,9 @@ const initialState = {
         products: [],
         tareasPendientes: [],
         tareasFinalizadas: [],
-        nuevaTareaFinalizada : []
+        nuevaTareaFinalizada : [],
+        nuevaTareaSuspendida: [],
+        tareasSuspendidas: []
     }
 }
 
@@ -42,12 +44,24 @@ export const itSlice = createSlice({
                 state.value.tareasFinalizadas.push(tarea)
             }
         },
+        nuevaTareaSuspendida: (state,action) =>{
+            const { idTarea } = action.payload;
+            const tareaIndex = state.value.tareasPendientes.findIndex((p) => p.id == idTarea);
+            if (tareaIndex !== -1) {
+                const tarea = state.value.tareasPendientes.splice(tareaIndex, 1)[0]
+                state.value.nuevaTareaSuspendida = tarea
+                state.value.tareasSuspendidas.push(tarea)
+            }
+        },
         limpiarTareaFinalizada: (state,action) => {
             state.value.nuevaTareaFinalizada = []
+        },
+        limpiarTareaSuspendida: (state,action) => {
+            state.value.nuevaTareaSuspendida = []
         }
     }
 })
 
-export const { equipoUsado, estadoTarea, setProducts, setTareasPendientes, setTareasFinalizadas, limpiarTareaFinalizada} = itSlice.actions
+export const { equipoUsado, estadoTarea, setProducts, nuevaTareaSuspendida, setTareasPendientes, setTareasFinalizadas, limpiarTareaFinalizada, limpiarTareaSuspendida} = itSlice.actions
 
 export default itSlice.reducer

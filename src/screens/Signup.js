@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, Pressable } from 'react-native'
+import { View, Text, StyleSheet, Pressable, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { useSignupMutation } from '../app/services/auth'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../features/auth/authSlice'
-import {signupSchema} from "../validations/signupSchema"
+import { signupSchema } from "../validations/signupSchema"
 import SubmitButton from '../components/SubmitButton'
 import InputForm from '../components/InputForm'
 import { colors } from '../global/colors'
@@ -51,7 +51,7 @@ const Signup = ({ navigation }) => {
 
 
     return (
-
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
                 {/* <Text style={styles.title}>Registrate</Text> */}
                 <InputForm
@@ -82,6 +82,7 @@ const Signup = ({ navigation }) => {
                     <Text style={styles.subLink}>Login</Text>
                 </Pressable>
             </View>
+        </TouchableWithoutFeedback>
 
     )
 }
@@ -117,15 +118,15 @@ const styles = StyleSheet.create({
         margin: 5,
         fontFamily: "RobotoSlabMedium",
         fontWeight: 'bold',
-                // Para Android
-                elevation: 10,
-                // Para iOS
-                shadowColor: colors.gray10,
-                shadowOffset: {
-                    width: 0,
-                    height: 5,
-                },
-                shadowOpacity: 0.3,
-                shadowRadius: 5,
+        // Para Android
+        elevation: 10,
+        // Para iOS
+        shadowColor: colors.gray10,
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
     }
 })

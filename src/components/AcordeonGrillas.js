@@ -2,10 +2,12 @@ import { View, Text, TouchableOpacity, StyleSheet, Button, Pressable } from 'rea
 import Collapsible from 'react-native-collapsible';
 import { useEffect, useState } from 'react';
 import { estadoTarea } from "../features/itSlice"
+import { nuevaTareaSuspendida } from "../features/itSlice"
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import Loader from './Loader';
 import { colors } from "../global/colors"
+import SinTrabajoPendiente from './SinTrabajoPendiente';
 
 const Acordeon = ({ trabajo, navigation, route, arrayUsado }) => {
 
@@ -17,7 +19,7 @@ const Acordeon = ({ trabajo, navigation, route, arrayUsado }) => {
     const toggleCollapse = () => {
         setIsCollapsed(!isCollapsed);
     };
-    if (!trabajo) return <Loader />
+    if (!trabajo) return <SinTrabajoPendiente />
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={toggleCollapse} style={styles.header}>
@@ -36,7 +38,7 @@ const Acordeon = ({ trabajo, navigation, route, arrayUsado }) => {
                             <Pressable
                                 style={styles.suspendidoButton}
                                 onPress={() => {
-                                    dispatch(estadoTarea({ idTarea: trabajo.id }))
+                                    dispatch(nuevaTareaSuspendida({ idTarea: trabajo.id }))
                                     navigation.navigate('TareaFinalizada')
                                 }}
                             >
@@ -80,7 +82,6 @@ const Acordeon = ({ trabajo, navigation, route, arrayUsado }) => {
                         <Text style={styles.infoText}>{trabajo.info_adicional}</Text>
                     </View>
                 </View>
-
             </Collapsible>
         </View>
     );

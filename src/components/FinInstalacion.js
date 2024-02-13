@@ -50,7 +50,6 @@ const FinInstalacion = ({navigation, route}) => {
             <Pressable onPress={() => {
                 dispatch(equipoUsado({ id: value }))
                 dispatch(estadoTarea({ idTarea: idTarea}))
-                //necesito una funcion en dispatch que le pase el id de la tarea y que tome el array completo, se lo elimine y lo pase al otro de finalizado.
                 navigation.navigate('TareaFinalizada')
             }
             }
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
         padding: 16,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.gray3
+        backgroundColor: colors.backGroundBase
     },
     heading: {
         fontSize: 24,
@@ -110,7 +109,7 @@ const styles = StyleSheet.create({
     cancelButton: {
         marginTop: 16,
         padding: 12,
-        backgroundColor: "#ff4949",
+        backgroundColor: colors.cancelButton,
         borderRadius: 8,
     },
     confirmButtonText: {

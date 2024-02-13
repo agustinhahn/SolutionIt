@@ -1,19 +1,18 @@
-import { View, Text, FlatList, StyleSheet, Button, Pressable , SafeAreaView } from 'react-native'
+import { View, Text, FlatList, StyleSheet, Button, Pressable, SafeAreaView } from 'react-native'
 import AcordeonGrillas from '../components/AcordeonGrillas'
-import { useGetTrabajosQuery } from "../app/services/itServices"
-import { useDispatch , useSelector} from 'react-redux'
-import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import { setProducts, setTareasPendientes, setTareasFinalizadas } from '../features/itSlice'
-import { useGetStockQuery , useGetTareasFinalizadasQuery} from '../app/services/itServices'
-import Loader from '../components/Loader'
-import {colors} from "../global/colors"
+import { useGetStockQuery, useGetTareasFinalizadasQuery, useGetTrabajosQuery } from '../app/services/itServices'
+import { colors } from "../global/colors"
+import SinTrabajoPendiente from '../components/SinTrabajoPendiente'
 
 
 
 const Grillas = ({ navigation, route }) => {
 
     const dispatch = useDispatch();
-    const { data: trabajosPendientesData, isLoading } = useGetTrabajosQuery()
+    const trabajosPendientesQuery = useGetTrabajosQuery()
     const { data: trabajosFinalizadosData } = useGetTareasFinalizadasQuery()
     const { data: stockEquipos } = useGetStockQuery()
     const tareasFinalizadas = useSelector(state => state.it.value.tareasFinalizadas)
@@ -31,25 +30,27 @@ const Grillas = ({ navigation, route }) => {
     }, [stockEquipos, dispatch]);
 
     useEffect(() => {
-        if(trabajosPendientesData){
-            dispatch(setTareasPendientes(trabajosPendientesData))
+        if (trabajosPendientesQuery.data) {
+            dispatch(setTareasPendientes(trabajosPendientesQuery.data))
         }
-    }, [trabajosPendientesData])
+    }, [trabajosPendientesQuery])
+
+    const fetchData = () => {
+        trabajosPendientesQuery.refetch()
+    };
 
     const trabajosPendientes = useSelector(state => state.it.value.tareasPendientes)
 
-
-    if(isLoading) return <Loader />
-
     return (
-        <SafeAreaView  style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.buttonContainer}>
                 <Pressable
-                    onPress={() =>{
-                        if(tareasFinalizadas.length>0){
-                            navigation.navigate("TareaFinalizada")}
+                    onPress={() => {
+                        if (tareasFinalizadas.length > 0) {
+                            navigation.navigate("TareaFinalizada")
                         }
-                    } 
+                    }
+                    }
                     style={styles.button1}>
                     <Text style={styles.buttonText}>FINALIZADAS</Text>
                 </Pressable>
@@ -70,7 +71,9 @@ const Grillas = ({ navigation, route }) => {
                     />
                 ) :
                     (
-                        <Loader />
+                        <View>
+                            <SinTrabajoPendiente recarga={fetchData} />
+                        </View>
                     )
             }
         </SafeAreaView >
@@ -84,7 +87,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         zIndex: 1,
-        backgroundColor: colors.backGroundBase,  
+        backgroundColor: colors.backGroundBase,
         marginBottom: 50
     },
     buttonContainer: {

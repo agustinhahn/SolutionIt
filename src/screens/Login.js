@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, Pressable } from 'react-native'
+import { View, Text, StyleSheet, Pressable, TouchableWithoutFeedback, Keyboard  } from 'react-native'
 import InputForm from '../components/InputForm'
 import SubmitButton from '../components/SubmitButton'
 import { useLoginMutation } from '../app/services/auth'
 import { useDispatch } from 'react-redux'
-import { setUser} from '../features/auth/authSlice'
-import {colors} from "../global/colors"
+import { setUser } from '../features/auth/authSlice'
+import { colors } from "../global/colors"
 
 
 
@@ -26,6 +26,7 @@ const Login = ({ navigation }) => {
         triggerLogin({ email, password })
     }
     return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
                 {/* <Text style={styles.title} >Ingresar</Text> */}
                 <InputForm
@@ -48,6 +49,7 @@ const Login = ({ navigation }) => {
                     <Text style={styles.subLink}>Registrate</Text>
                 </Pressable>
             </View>
+        </TouchableWithoutFeedback>
     )
 }
 
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: "bold",
         color: "#333", // Cambiar el color del texto,
-        margin:20,
+        margin: 20,
     },
     sub: {
         fontSize: 12,
@@ -82,15 +84,15 @@ const styles = StyleSheet.create({
         margin: 5,
         fontFamily: "RobotoSlabMedium",
         fontWeight: 'bold',
-                // Para Android
-                elevation: 10,
-                // Para iOS
-                shadowColor: colors.gray10,
-                shadowOffset: {
-                    width: 0,
-                    height: 5,
-                },
-                shadowOpacity: 0.3,
-                shadowRadius: 5,
+        // Para Android
+        elevation: 10,
+        // Para iOS
+        shadowColor: colors.gray10,
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
     }
 })

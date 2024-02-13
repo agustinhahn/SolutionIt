@@ -6,22 +6,6 @@ export const itApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: base_url }),
     tagTypes:["image", "Tasks", "ActStock"],
     endpoints: (builder) => ({
-        // getInfoAbonoAntena: builder.query({
-        //     query: () => `infoAbonoAntena.json`,
-        //     transformResponse: (response) => Object.values(response)
-        // }),
-        // getInfoAbonoFibra: builder.query({
-        //     query: () => `infoAbonoFibra.json`,
-        //     transformResponse: (response) => Object.values(response)
-        // }),
-        // getInfoInsta: builder.query({
-        //     query: () => `infoInsta.json`,
-        //     transformResponse: (response) => Object.values(response)
-        // }),
-        // getInfoPrecios: builder.query({
-        //     query: () => "infoPrecios.json",
-        //     transformResponse: (response) => Object.values(response)
-        // }),
         getInfoGeneral: builder.query({
             query: () => "infoPreciosGenerales.json",
             transformResponse: (response) => Object.values(response)
@@ -33,7 +17,13 @@ export const itApi = createApi({
         }),
         getTrabajos: builder.query({
             query: () => `trabajos.json`,
-            transformResponse: (response) => Object.values(response),
+            transformResponse: (response) => {
+                if (response === null) {
+                    return null; // Retornar null si la respuesta es null
+                } else {
+                    return Object.values(response); // Transformar la respuesta a un objeto si no es null
+                }
+            },
             providesTags:["Tasks"]
         }),
         getTareasFinalizadas: builder.query({
@@ -51,6 +41,14 @@ export const itApi = createApi({
         postTareaFinalizada: builder.mutation({
             query: ({obj}) => ({
                 url: `trabajosFinalizados.json`,
+                method: "POST",
+                body: obj
+            }),
+            invalidatesTags: ["Tasks"]
+        }),
+        postTareaSuspendida: builder.mutation({
+            query: ({obj}) => ({
+                url: `trabajosSuspendidos.json`,
                 method: "POST",
                 body: obj
             }),
@@ -79,4 +77,4 @@ export const itApi = createApi({
     })
 })
 
-export const { useGetInfoGeneralQuery, usePostActualizarTareasPendientesMutation ,useGetProfileImageQuery,usePostProfileImageMutation, usePostTareaFinalizadaMutation , usePostStockMutation ,  useGetStockQuery, useGetTrabajosQuery, useGetTareasFinalizadasQuery } = itApi
+export const { useGetInfoGeneralQuery, usePostTareaSuspendidaMutation, usePostActualizarTareasPendientesMutation ,useGetProfileImageQuery,usePostProfileImageMutation, usePostTareaFinalizadaMutation , usePostStockMutation ,  useGetStockQuery, useGetTrabajosQuery, useGetTareasFinalizadasQuery } = itApi

@@ -1,9 +1,9 @@
 import { View, Text, FlatList, StyleSheet, Button, Pressable, SafeAreaView  } from 'react-native'
 import AcordeonGrillas from './AcordeonGrillas'
 import { useSelector, useDispatch } from 'react-redux';
-import { usePostStockMutation, usePostTareaFinalizadaMutation, usePostActualizarTareasPendientesMutation } from '../app/services/itServices';
+import { usePostStockMutation, usePostTareaFinalizadaMutation, usePostTareaSuspendidaMutation,usePostActualizarTareasPendientesMutation } from '../app/services/itServices';
 import { useEffect } from 'react';
-import { limpiarTareaFinalizada } from '../features/itSlice';
+import { limpiarTareaFinalizada, limpiarTareaSuspendida } from '../features/itSlice';
 import {colors} from "../global/colors"
 
 
@@ -14,10 +14,12 @@ const TareaFinalizada = ({ navigation, route }) => {
     const [cambioStock] = usePostStockMutation()
     const [tareaFinalizadaMut] = usePostTareaFinalizadaMutation()
     const [actualizarTareasPendientes] = usePostActualizarTareasPendientesMutation()
+    const [actualizarTareasSuspendidas] = usePostTareaSuspendidaMutation()
     const tareasFinalizadas = useSelector(state => state.it.value.tareasFinalizadas)
     const tareaFinalizada = useSelector((state) => state.it.value.nuevaTareaFinalizada)
     const trabajosPendientes = useSelector((state) => state.it.value.tareasPendientes)
     const productos = useSelector((state) => state.it.value.products )
+    const tareaSuspendida = useSelector((state) => state.it.value.nuevaTareaSuspendida)
 
 
     useEffect(() => {
@@ -27,9 +29,17 @@ const TareaFinalizada = ({ navigation, route }) => {
     }, [])
 
     useEffect(() => {
-        if (tareaFinalizada) {
+        if (tareaSuspendida.id != undefined) {
+            actualizarTareasSuspendidas({obj: tareaSuspendida})
+            actualizarTareasPendientes({obj:trabajosPendientes })
+            dispatch(limpiarTareaSuspendida())
+        }
+    }, [])
+
+    useEffect(() => {
+        if(tareaFinalizada.id != undefined) {
             tareaFinalizadaMut({ obj: tareaFinalizada })
-            actualizarTareasPendientes({ obj: trabajosPendientes })
+            actualizarTareasPendientes({obj:trabajosPendientes })
             dispatch(limpiarTareaFinalizada())
         }
     }, [])
