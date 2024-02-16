@@ -43,7 +43,6 @@ const TareaFinalizada = ({ navigation, route }) => {
             dispatch(limpiarTareaFinalizada())
         }
     }, [])
-
     const tareasFin = useSelector(state => state.it.value.tareasFinalizadas)
 
     return (

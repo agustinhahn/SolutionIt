@@ -19,7 +19,7 @@ const Acordeon = ({ valores, tituloAc }) => {
                 <View style={styles.content}>
                     <FlatList
                         data={valores}
-                        keyExtractor={(item) => item.id}
+                        keyExtractor={item => (item && item.id) ? item.id.toString() : ''}
                         renderItem={({ item }) => (
                             <View style={styles.ingredient}>
                                 <Text style={styles.lista}>- {item.titulo}</Text>

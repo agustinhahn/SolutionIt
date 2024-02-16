@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { array } from 'yup'
 
 const initialState = {
     value: {
@@ -27,13 +28,20 @@ export const itSlice = createSlice({
         },
         equipoUsado: (state, action) => {
             const { id } = action.payload;
-            const arrayModificado = state.value.products.map((p) => {
-                if(p.id === id){
-                    return {...p, cantidad: p.cantidad -1}
-                }
-                return p
-            });
-            state.value.products = arrayModificado
+            if(id.length>0) {
+                let arrayModificado = state.value.products;
+                id.forEach(element => {
+                    const nuevoArrayModificado = arrayModificado.map((p) => {
+                        if (p.id === element) {
+                            return { ...p, cantidad: p.cantidad - 1 };
+                        }
+                        return p;
+                    }
+                    );
+                    arrayModificado = nuevoArrayModificado
+                });
+                state.value.products = arrayModificado;
+            }
         },
         estadoTarea: (state, action) => {
             const { idTarea } = action.payload;

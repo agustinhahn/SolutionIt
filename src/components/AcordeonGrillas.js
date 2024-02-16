@@ -9,7 +9,7 @@ import Loader from './Loader';
 import { colors } from "../global/colors"
 import SinTrabajoPendiente from './SinTrabajoPendiente';
 
-const Acordeon = ({ trabajo, navigation, route, arrayUsado }) => {
+const AcordeonGrillas = ({ trabajo, navigation, route, arrayUsado }) => {
 
     const dispatch = useDispatch()
     const trabajosPendientes = useSelector(state => state.it.value.tareasPendientes)
@@ -87,7 +87,7 @@ const Acordeon = ({ trabajo, navigation, route, arrayUsado }) => {
     );
 };
 
-export default Acordeon;
+export default AcordeonGrillas;
 
 const styles = StyleSheet.create({
     container: {

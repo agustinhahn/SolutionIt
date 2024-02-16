@@ -1,55 +1,97 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native'
+import { View, Text, Pressable, StyleSheet, FlatList } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker';
-import {  useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import { equipoUsado } from '../features/itSlice'
-import {estadoTarea} from "../features/itSlice"
+import { estadoTarea } from "../features/itSlice"
 import { useSelector } from 'react-redux'
-import {colors} from "../global/colors"
+import { colors } from "../global/colors"
+import CheckBoxIt from "./CheckBoxIt"
 
 
-const FinInstalacion = ({navigation, route}) => {
+const FinInstalacion = ({ navigation, route }) => {
     const stockEquipos = useSelector(state => state.it.value.products)
 
     const dispatch = useDispatch()
-    const {idTarea} = route.params //traigo el id de la tarea a finalizar
-
-
-
-
+    const { idTarea } = route.params //traigo el id de la tarea a finalizar
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(null);
+    const [valuePicker, setvaluePicker] = useState(null);
     const [equipo, setEquipo] = useState([]);
-    
+    const [opcionesPago, setOpcionesPago] = useState([])
+    const [selectedItems, setSelectedItems] = useState([]);
+
     useEffect(() => {
         const nuevosEquipos = stockEquipos.map(element => ({
             label: element.titulo,
-            value: element.id
+            id: element.id
         }));
         setEquipo(nuevosEquipos);
+        const opciones = [
+            {
+                value: 0,
+                label: "Ya esta pagado"
+            },
+            {
+                value: 1,
+                label: "Paga luego"
+            },
+            {
+                value: 2,
+                label: "Paga total efectivo"
+            },
+            {
+                value: 3,
+                label: "Paga total tarjeta"
+            },
+            {
+                value: 4,
+                label: "Paga total transferencia"
+            },
+            {
+                value: 5,
+                label: "Paga con varios medios"
+            },
+        ]
+        setOpcionesPago(opciones)
     }, [stockEquipos]);
-
 
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>COMPLETAR FORMULARIO</Text>
-            <Text style={styles.subheading}>EQUIPO UTILIZADO</Text>
             <DropDownPicker
                 open={open}
-                value={value}
-                items={equipo}
+                value={valuePicker}
+                items={opcionesPago}
                 setOpen={setOpen}
-                setValue={setValue}
-                setItems={setEquipo}
+                setValue={setvaluePicker}
+                setItems={() =>{}}
                 containerStyle={styles.dropdownContainer}
                 style={styles.dropdownStyle}
                 labelStyle={styles.dropdownLabel}
                 selectedItemContainerStyle={styles.selectedItemContainer}
-                placeholder="Seleccionar equipo"
+                placeholder="DEFINIR PAGO"
+            />
+            <Text style={styles.subheading}>EQUIPO UTILIZADO</Text>
+            <FlatList
+                data={stockEquipos}
+                keyExtractor={item => (item && item.id) ? item.id.toString() : ''}
+                renderItem={({ item }) => (
+                    <View style={styles.centeredContainer}>
+                        <CheckBoxIt
+                            label={item.titulo}
+                            onChange={(checked) => {
+                                const newSelectedItems = checked
+                                    ? [...selectedItems, item.id]
+                                    : selectedItems.filter(id => id !== item.id);
+                                setSelectedItems(newSelectedItems);
+                            }}
+                        />
+                    </View>
+                )}
             />
             <Pressable onPress={() => {
-                dispatch(equipoUsado({ id: value }))
-                dispatch(estadoTarea({ idTarea: idTarea}))
+                dispatch(equipoUsado({ id: selectedItems }))
+                dispatch(estadoTarea({ idTarea: idTarea }))
                 navigation.navigate('TareaFinalizada')
             }
             }
@@ -57,7 +99,7 @@ const FinInstalacion = ({navigation, route}) => {
                 <Text style={styles.confirmButtonText}>CONFIRMAR</Text>
             </Pressable>
             <Pressable style={styles.cancelButton}
-                onPress={()=>{
+                onPress={() => {
                     navigation.navigate('Grillas')
                 }}
             >
@@ -66,6 +108,7 @@ const FinInstalacion = ({navigation, route}) => {
         </View>
     )
 }
+
 
 export default FinInstalacion
 
@@ -84,7 +127,7 @@ const styles = StyleSheet.create({
     },
     subheading: {
         fontSize: 18,
-        marginBottom: 8,
+        marginBottom: 12,
     },
     dropdownContainer: {
         width: '100%',
@@ -92,6 +135,8 @@ const styles = StyleSheet.create({
     },
     dropdownStyle: {
         backgroundColor: '#fafafa',
+        marginTop: 10,
+        marginBottom: 30
     },
     dropdownLabel: {
         fontSize: 16,
@@ -116,5 +161,10 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 18,
         textAlign: 'center',
+    },
+    centeredContainer: {
+        paddingHorizontal: 50,
+        marginTop: 10,
+        width: "100%",
     },
 });
