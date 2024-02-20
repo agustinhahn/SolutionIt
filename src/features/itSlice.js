@@ -8,7 +8,17 @@ const initialState = {
         tareasFinalizadas: [],
         nuevaTareaFinalizada : [],
         nuevaTareaSuspendida: [],
-        tareasSuspendidas: []
+        tareasSuspendidas: [],
+        mediosdepago: [],
+        datosTareaFinalizada: {
+            equipoUsado: [],
+            idTarea: [],
+            pago: {
+                medio: [],
+                importe: []
+            },
+            comentarios: []
+        }
     }
 }
 
@@ -19,6 +29,10 @@ export const itSlice = createSlice({
     reducers: {
         setProducts: (state, action) => {
             state.value.products = action.payload
+        },
+        setMediosPago: (state, action) => {
+            const nuevosMediosPago = action.payload.map(({ value, label }) => ({ value, label }));
+            state.value.mediosdepago = nuevosMediosPago;
         },
         setTareasPendientes: (state, action) => {
             state.value.tareasPendientes = action.payload
@@ -66,10 +80,29 @@ export const itSlice = createSlice({
         },
         limpiarTareaSuspendida: (state,action) => {
             state.value.nuevaTareaSuspendida = []
+        },
+        datosTareaFinalizada: (state,action) => {
+            const {idEquipos} = action.payload
+            const {idTareaFin} = action.payload
+            const {valuePago} = action.payload
+            const {importe} = action.payload
+            const {descripction} = action.payload
+            if(idEquipos.length>0){
+                let objetoEncontrado
+                idEquipos.forEach(element => {
+                    objetoEncontrado = state.value.products.find(obj => obj.id === element)
+                    state.value.datosTareaFinalizada.equipoUsado.push(objetoEncontrado.titulo)
+                });
+            }
+            let LabelPago = state.value.mediosdepago.find(obj => obj.value === valuePago)
+            state.value.datosTareaFinalizada.pago.medio.push(LabelPago.label)
+            state.value.datosTareaFinalizada.idTarea.push(idTareaFin)
+            state.value.datosTareaFinalizada.pago.importe.push(importe)
+            state.value.datosTareaFinalizada.comentarios.push(descripction)
         }
     }
 })
 
-export const { equipoUsado, estadoTarea, setProducts, nuevaTareaSuspendida, setTareasPendientes, setTareasFinalizadas, limpiarTareaFinalizada, limpiarTareaSuspendida} = itSlice.actions
+export const { equipoUsado, estadoTarea, setProducts,datosTareaFinalizada,setMediosPago, nuevaTareaSuspendida, setTareasPendientes, setTareasFinalizadas, limpiarTareaFinalizada, limpiarTareaSuspendida} = itSlice.actions
 
 export default itSlice.reducer

@@ -2,8 +2,8 @@ import { View, Text, FlatList, StyleSheet, Button, Pressable, SafeAreaView } fro
 import AcordeonGrillas from '../components/AcordeonGrillas'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { setProducts, setTareasPendientes, setTareasFinalizadas } from '../features/itSlice'
-import { useGetStockQuery, useGetTareasFinalizadasQuery, useGetTrabajosQuery } from '../app/services/itServices'
+import { setProducts, setTareasPendientes, setTareasFinalizadas,setMediosPago } from '../features/itSlice'
+import { useGetStockQuery, useGetTareasFinalizadasQuery, useGetTrabajosQuery, useGetMediosDePagoQuery } from '../app/services/itServices'
 import { colors } from "../global/colors"
 import SinTrabajoPendiente from '../components/SinTrabajoPendiente'
 
@@ -15,6 +15,7 @@ const Grillas = ({ navigation, route }) => {
     const trabajosPendientesQuery = useGetTrabajosQuery()
     const { data: trabajosFinalizadosData } = useGetTareasFinalizadasQuery()
     const { data: stockEquipos } = useGetStockQuery()
+    const { data: mediosPago } = useGetMediosDePagoQuery()
     const tareasFinalizadas = useSelector(state => state.it.value.tareasFinalizadas)
 
     useEffect(() => {
@@ -22,6 +23,12 @@ const Grillas = ({ navigation, route }) => {
             dispatch(setTareasFinalizadas(trabajosFinalizadosData))
         }
     }, [trabajosFinalizadosData])
+
+    useEffect(() => {
+        if (mediosPago) {
+            dispatch(setMediosPago(mediosPago))
+        }
+    }, [mediosPago])
 
     useEffect(() => {
         if (stockEquipos) {

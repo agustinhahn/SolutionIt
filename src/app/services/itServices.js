@@ -30,6 +30,10 @@ export const itApi = createApi({
             query: () => `trabajosFinalizados.json`,
             transformResponse: (response) => Object.values(response),
         }),
+        getMediosDePago: builder.query({
+            query: () => `mediosdepago.json`,
+            transformResponse: (response) => Object.values(response),
+        }),
         postStock: builder.mutation({
             query: ({obj}) => ({
                 url: `stock.json`,
@@ -62,6 +66,13 @@ export const itApi = createApi({
             }),
             invalidatesTags: ["Tasks"]
         }),
+        postDatosFinTarea: builder.mutation({
+            query: ({obj}) => ({
+                url: `datosTrabajosFinalizados.json`,
+                method: "POST",
+                body: obj
+            }),
+        }),
         postProfileImage: builder.mutation({
             query:({localId, image}) =>({
                 url: `profileImage/${localId}.json`,
@@ -77,4 +88,4 @@ export const itApi = createApi({
     })
 })
 
-export const { useGetInfoGeneralQuery, usePostTareaSuspendidaMutation, usePostActualizarTareasPendientesMutation ,useGetProfileImageQuery,usePostProfileImageMutation, usePostTareaFinalizadaMutation , usePostStockMutation ,  useGetStockQuery, useGetTrabajosQuery, useGetTareasFinalizadasQuery } = itApi
+export const { useGetInfoGeneralQuery,  useGetMediosDePagoQuery, usePostTareaSuspendidaMutation, usePostDatosFinTareaMutation, usePostActualizarTareasPendientesMutation ,useGetProfileImageQuery,usePostProfileImageMutation, usePostTareaFinalizadaMutation , usePostStockMutation ,  useGetStockQuery, useGetTrabajosQuery, useGetTareasFinalizadasQuery } = itApi

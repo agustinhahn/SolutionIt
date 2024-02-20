@@ -1,8 +1,8 @@
 import { View, Text, FlatList, StyleSheet, Button, Pressable, SafeAreaView  } from 'react-native'
 import AcordeonGrillas from './AcordeonGrillas'
 import { useSelector, useDispatch } from 'react-redux';
-import { usePostStockMutation, usePostTareaFinalizadaMutation, usePostTareaSuspendidaMutation,usePostActualizarTareasPendientesMutation } from '../app/services/itServices';
-import { useEffect } from 'react';
+import { usePostStockMutation, usePostTareaFinalizadaMutation, usePostDatosFinTareaMutation, usePostTareaSuspendidaMutation,usePostActualizarTareasPendientesMutation } from '../app/services/itServices';
+import { useEffect, useState } from 'react';
 import { limpiarTareaFinalizada, limpiarTareaSuspendida } from '../features/itSlice';
 import {colors} from "../global/colors"
 
@@ -15,13 +15,14 @@ const TareaFinalizada = ({ navigation, route }) => {
     const [tareaFinalizadaMut] = usePostTareaFinalizadaMutation()
     const [actualizarTareasPendientes] = usePostActualizarTareasPendientesMutation()
     const [actualizarTareasSuspendidas] = usePostTareaSuspendidaMutation()
+    const [datosTareasFin] = usePostDatosFinTareaMutation()
     const tareasFinalizadas = useSelector(state => state.it.value.tareasFinalizadas)
     const tareaFinalizada = useSelector((state) => state.it.value.nuevaTareaFinalizada)
     const trabajosPendientes = useSelector((state) => state.it.value.tareasPendientes)
     const productos = useSelector((state) => state.it.value.products )
     const tareaSuspendida = useSelector((state) => state.it.value.nuevaTareaSuspendida)
-
-
+    const datosTareasfinalizadas = useSelector((state) => state.it.value.datosTareaFinalizada)
+    
     useEffect(() => {
         if (productos) {
             cambioStock({obj: productos})
@@ -43,6 +44,13 @@ const TareaFinalizada = ({ navigation, route }) => {
             dispatch(limpiarTareaFinalizada())
         }
     }, [])
+
+    useEffect(()=>{
+        if(datosTareasfinalizadas){
+            datosTareasFin({obj:datosTareasfinalizadas })
+        }
+    }, [])
+
     const tareasFin = useSelector(state => state.it.value.tareasFinalizadas)
 
     return (

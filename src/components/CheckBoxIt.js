@@ -12,7 +12,7 @@ const CheckBoxIT = ({ label, onChange, value }) => {
     return (
         <TouchableOpacity style={styles.checkboxContainer} onPress={toggleCheckbox}>
             <View style={[styles.checkbox, isChecked && styles.checked]} />
-            <Text>{label}</Text>
+            <Text style={styles.textlabel}>{label}</Text>
         </TouchableOpacity>
     );
 };
@@ -22,10 +22,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 10,
+        flex:1
     },
     checkbox: {
-        width: 20,
-        height: 20,
+        width: 30,
+        height: 30,
         borderWidth: 1,
         borderColor: '#ccc',
         marginRight: 10,
@@ -33,6 +34,10 @@ const styles = StyleSheet.create({
     checked: {
         backgroundColor: colors.lightBlue7,
     },
+    textlabel: {
+        fontSize: 18,
+        color: colors.gray7
+    }
 });
 
 export default CheckBoxIT;
