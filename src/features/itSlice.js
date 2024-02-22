@@ -18,7 +18,8 @@ const initialState = {
                 importe: []
             },
             comentarios: []
-        }
+        },
+        datosArrayTareasFinalizadas: []
     }
 }
 
@@ -99,10 +100,23 @@ export const itSlice = createSlice({
             state.value.datosTareaFinalizada.idTarea.push(idTareaFin)
             state.value.datosTareaFinalizada.pago.importe.push(importe)
             state.value.datosTareaFinalizada.comentarios.push(descripction)
+            const nuevaInfoFinalizada = state.value.datosTareaFinalizada
+            state.value.datosArrayTareasFinalizadas.push(nuevaInfoFinalizada)
+        },
+        limpiarDatosTareafinalizada: (state,action) => {
+            state.value.datosTareaFinalizada = {
+                equipoUsado: [],
+                idTarea: [],
+                pago: {
+                    medio: [],
+                    importe: []
+                },
+                comentarios: []
+            }
         }
     }
 })
 
-export const { equipoUsado, estadoTarea, setProducts,datosTareaFinalizada,setMediosPago, nuevaTareaSuspendida, setTareasPendientes, setTareasFinalizadas, limpiarTareaFinalizada, limpiarTareaSuspendida} = itSlice.actions
+export const { equipoUsado, estadoTarea, setProducts,datosTareaFinalizada, limpiarDatosTareafinalizada,datosArrayTareasFinalizadas,setMediosPago, nuevaTareaSuspendida, setTareasPendientes, setTareasFinalizadas, limpiarTareaFinalizada, limpiarTareaSuspendida} = itSlice.actions
 
 export default itSlice.reducer

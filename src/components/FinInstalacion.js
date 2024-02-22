@@ -72,11 +72,11 @@ const FinInstalacion = ({ navigation, route }) => {
                     }
                     {
                         valuePicker == 2 || valuePicker == 3 || valuePicker == 4 ? <View><TextInput
-                            style={styles.input}
+                            style={styles.inputPago}
                             onChangeText={onChangeNumber}
                             value={number}
                             placeholder="escriba importe"
-                            keyboardType="numeric"
+                            inputMode="numeric"
                         /></View> : null
                     }
                     <Text style={styles.subheading}>EQUIPOS UTILIZADOS</Text>
@@ -105,29 +105,33 @@ const FinInstalacion = ({ navigation, route }) => {
                     </Pressable>
                     {
                         useComment ? <View><TextInput
+                            multiline
+                            numberOfLines={4}
                             style={styles.input}
                             onChangeText={setComment}
                             value={comment}
                             placeholder="detalle/comentario"
-                            keyboardType="default" /></View> : null
+                            inputMode="text" /></View> : null
                     }
-                    <Pressable onPress={() => {
-                        dispatch(equipoUsado({ id: selectedItems }))
-                        dispatch(estadoTarea({ idTarea: idTarea }))
-                        dispatch(datosTareaFinalizada({ idEquipos: selectedItems, idTareaFin: idTarea, valuePago: valuePicker, importe: number, descripction: comment }))
-                        navigation.navigate('TareaFinalizada')
-                    }
-                    }
-                        style={styles.confirmButton}>
-                        <Text style={styles.confirmButtonText}>CONFIRMAR</Text>
-                    </Pressable>
-                    <Pressable style={styles.cancelButton}
-                        onPress={() => {
-                            navigation.navigate('Grillas')
-                        }}
-                    >
-                        <Text style={styles.confirmButtonText}>CANCELAR</Text>
-                    </Pressable>
+                    <View style={styles.contenedorButtons}>
+                        <Pressable onPress={() => {
+                            dispatch(equipoUsado({ id: selectedItems }))
+                            dispatch(estadoTarea({ idTarea: idTarea }))
+                            dispatch(datosTareaFinalizada({ idEquipos: selectedItems, idTareaFin: idTarea, valuePago: valuePicker, importe: number, descripction: comment }))
+                            navigation.navigate('TareaFinalizada')
+                        }
+                        }
+                            style={styles.confirmButton}>
+                            <Text style={styles.confirmButtonText}>Confirmar</Text>
+                        </Pressable>
+                        <Pressable style={styles.cancelButton}
+                            onPress={() => {
+                                navigation.navigate('Grillas')
+                            }}
+                        >
+                            <Text style={styles.confirmButtonText}>Cancelar</Text>
+                        </Pressable>
+                    </View>
                 </View>
             </KeyboardAvoidingView>
         </TouchableWithoutFeedback>
@@ -148,13 +152,16 @@ const styles = StyleSheet.create({
         flexGrow: 1
     },
     heading: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 16,
+        fontSize: 18,
+        color: colors.gray8,
+        fontWeight: "bold",
+        marginBottom: 10,
     },
     subheading: {
-        fontSize: 18,
+        fontSize: 16,
         marginBottom: 12,
+        color: colors.gray8,
+        fontWeight: "bold",
     },
     dropdownContainer: {
         width: '100%',
@@ -172,27 +179,33 @@ const styles = StyleSheet.create({
         backgroundColor: '#e0e0e0',
     },
     confirmButton: {
-        marginTop: 10,
+        marginTop: 5,
         padding: 6,
         backgroundColor: colors.confirmButton,
         borderRadius: 8,
+        width: 100,
+        marginRight: 10
     },
     cancelButton: {
-        marginTop: 10,
+        marginTop: 5,
         padding: 6,
         backgroundColor: colors.cancelButton,
         borderRadius: 8,
+        width: 100,
+        marginLeft: 10
+    },
+    commentButton: {
+        marginTop: 10,
+        marginBottom: 5,
+        padding: 6,
+        backgroundColor: colors.gray5,
+        borderRadius: 8,
+        width: 220
     },
     confirmButtonText: {
         color: '#fff',
         fontSize: 18,
         textAlign: 'center',
-    },
-    commentButton: {
-        marginTop: 25,
-        padding: 8,
-        backgroundColor: colors.gray5,
-        borderRadius: 8,
     },
     centeredContainer: {
         paddingHorizontal: 50,
@@ -200,10 +213,21 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     input: {
-        height: 40,
+        minHeight: 100,
+        width: 300,
         borderWidth: 0.5,
         padding: 10,
-        marginTop: 15,
-        marginBottom: 10
+        marginTop: 5,
+        marginBottom: 10,
     },
+    inputPago:{
+        width: 200,
+        borderWidth: 0.5,
+        padding: 10,
+        marginTop: 5,
+        marginBottom: 10,
+    },
+    contenedorButtons:{
+        flexDirection: "row",
+    }
 });

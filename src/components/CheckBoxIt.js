@@ -28,15 +28,16 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: colors.gray6,
         marginRight: 10,
     },
     checked: {
-        backgroundColor: colors.lightBlue7,
+        backgroundColor: colors.lightBlue8,
     },
     textlabel: {
-        fontSize: 18,
-        color: colors.gray7
+        fontSize: 16,
+        color: colors.gray7,
+        marginLeft: 5
     }
 });
 

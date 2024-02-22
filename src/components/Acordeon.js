@@ -37,7 +37,7 @@ export default Acordeon;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.gray2,
+        backgroundColor: colors.gray1,
         marginVertical: 8,
         elevation: 2,
         width: "90%",

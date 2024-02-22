@@ -28,7 +28,13 @@ export const itApi = createApi({
         }),
         getTareasFinalizadas: builder.query({
             query: () => `trabajosFinalizados.json`,
-            transformResponse: (response) => Object.values(response),
+            transformResponse: (response) => {
+                if (response === null) {
+                    return null; // Retornar null si la respuesta es null
+                } else {
+                    return Object.values(response); // Transformar la respuesta a un objeto si no es null
+                }
+            },
         }),
         getMediosDePago: builder.query({
             query: () => `mediosdepago.json`,
@@ -69,7 +75,7 @@ export const itApi = createApi({
         postDatosFinTarea: builder.mutation({
             query: ({obj}) => ({
                 url: `datosTrabajosFinalizados.json`,
-                method: "POST",
+                method: "PUT",
                 body: obj
             }),
         }),

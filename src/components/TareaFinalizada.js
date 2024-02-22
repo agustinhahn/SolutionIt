@@ -3,7 +3,7 @@ import AcordeonGrillas from './AcordeonGrillas'
 import { useSelector, useDispatch } from 'react-redux';
 import { usePostStockMutation, usePostTareaFinalizadaMutation, usePostDatosFinTareaMutation, usePostTareaSuspendidaMutation,usePostActualizarTareasPendientesMutation } from '../app/services/itServices';
 import { useEffect, useState } from 'react';
-import { limpiarTareaFinalizada, limpiarTareaSuspendida } from '../features/itSlice';
+import { limpiarTareaFinalizada, limpiarTareaSuspendida  , limpiarDatosTareafinalizada} from '../features/itSlice';
 import {colors} from "../global/colors"
 
 
@@ -21,7 +21,8 @@ const TareaFinalizada = ({ navigation, route }) => {
     const trabajosPendientes = useSelector((state) => state.it.value.tareasPendientes)
     const productos = useSelector((state) => state.it.value.products )
     const tareaSuspendida = useSelector((state) => state.it.value.nuevaTareaSuspendida)
-    const datosTareasfinalizadas = useSelector((state) => state.it.value.datosTareaFinalizada)
+    const nuevosDatosTareasFinalizadas = useSelector((state) => state.it.value.datosTareaFinalizada)
+    const datosTareasfinalizadas = useSelector((state) => state.it.value.datosArrayTareasFinalizadas)
     
     useEffect(() => {
         if (productos) {
@@ -46,8 +47,11 @@ const TareaFinalizada = ({ navigation, route }) => {
     }, [])
 
     useEffect(()=>{
-        if(datosTareasfinalizadas){
+        console.log(nuevosDatosTareasFinalizadas.idTarea[0])
+        console.log(datosTareasfinalizadas)
+        if(nuevosDatosTareasFinalizadas.idTarea[0] != undefined){
             datosTareasFin({obj:datosTareasfinalizadas })
+            dispatch(limpiarDatosTareafinalizada())
         }
     }, [])
 

@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         paddingVertical: 8,
-        backgroundColor: colors.gray2
+        backgroundColor: colors.gray1
     },
     suspendidoButton: {
         flex: 1,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     },
     content: {
         padding: 16,
-        backgroundColor: colors.gray2,
+        backgroundColor: colors.gray1,
     },
     infoText: {
         marginBottom: 8,
