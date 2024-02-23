@@ -19,7 +19,7 @@ const FinInstalacion = ({ navigation, route }) => {
 
     const { idTarea } = route.params //traigo el id de la tarea a finalizar
     const [open, setOpen] = useState(false);
-    const [valuePicker, setvaluePicker] = useState(null);
+    const [valuePicker, setvaluePicker] = useState(5);
     const [equipo, setEquipo] = useState([]);
     const [opcionesPago, setOpcionesPago] = useState([])
     const [selectedItems, setSelectedItems] = useState([]);
@@ -46,6 +46,7 @@ const FinInstalacion = ({ navigation, route }) => {
         }
         else {
             setAddCommentTextButton("Agregar comentario")
+            setComment("")
             setUseComment(false)
         }
     }
@@ -117,7 +118,12 @@ const FinInstalacion = ({ navigation, route }) => {
                         <Pressable onPress={() => {
                             dispatch(equipoUsado({ id: selectedItems }))
                             dispatch(estadoTarea({ idTarea: idTarea }))
-                            dispatch(datosTareaFinalizada({ idEquipos: selectedItems, idTareaFin: idTarea, valuePago: valuePicker, importe: number, descripction: comment }))
+                            if(valuePicker == 0 || valuePicker == 1){
+                                dispatch(datosTareaFinalizada({ idEquipos: selectedItems, idTareaFin: idTarea, valuePago: valuePicker, importe: 0, descripction: comment }))
+                            }
+                            else{
+                                dispatch(datosTareaFinalizada({ idEquipos: selectedItems, idTareaFin: idTarea, valuePago: valuePicker, importe: number, descripction: comment }))
+                            }
                             navigation.navigate('TareaFinalizada')
                         }
                         }
