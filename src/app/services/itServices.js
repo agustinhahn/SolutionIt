@@ -36,6 +36,16 @@ export const itApi = createApi({
                 }
             },
         }),
+        getAlertas: builder.query({
+            query: () => `alertas.json`,
+            transformResponse: (response) => {
+                if (response === null) {
+                    return null; // Retornar null si la respuesta es null
+                } else {
+                    return Object.values(response); // Transformar la respuesta a un objeto si no es null
+                }
+            },
+        }),
         getMediosDePago: builder.query({
             query: () => `mediosdepago.json`,
             transformResponse: (response) => Object.values(response),
@@ -94,4 +104,4 @@ export const itApi = createApi({
     })
 })
 
-export const { useGetInfoGeneralQuery,  useGetMediosDePagoQuery, usePostTareaSuspendidaMutation, usePostDatosFinTareaMutation, usePostActualizarTareasPendientesMutation ,useGetProfileImageQuery,usePostProfileImageMutation, usePostTareaFinalizadaMutation , usePostStockMutation ,  useGetStockQuery, useGetTrabajosQuery, useGetTareasFinalizadasQuery } = itApi
+export const { useGetInfoGeneralQuery,  useGetMediosDePagoQuery, useGetAlertasQuery, usePostTareaSuspendidaMutation, usePostDatosFinTareaMutation, usePostActualizarTareasPendientesMutation ,useGetProfileImageQuery,usePostProfileImageMutation, usePostTareaFinalizadaMutation , usePostStockMutation ,  useGetStockQuery, useGetTrabajosQuery, useGetTareasFinalizadasQuery } = itApi

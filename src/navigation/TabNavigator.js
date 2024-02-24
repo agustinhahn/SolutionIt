@@ -6,7 +6,8 @@ import StockStack from './StockStack';
 import InfoStack from './InfoStack';
 import GrillasStack from './GrillasStack';
 import ProfileStack from './ProfileStack';
-import {colors} from "../global/colors"
+import AlertaStack from './AlertaStack'
+import { colors } from "../global/colors"
 
 const Tab = createBottomTabNavigator();
 
@@ -19,6 +20,13 @@ const TabNavigator = () => {
                 tabBarStyle: styles.tabBar
             }}
         >
+            <Tab.Screen
+                name='AlertaStack'
+                component={AlertaStack}
+                options={{
+                    tabBarIcon: ({ focused }) => <TabIcon icon="bell" label="" focused={focused} />
+                }}
+            />
             <Tab.Screen
                 name='GrillasTab'
                 component={GrillasStack}
@@ -47,6 +55,7 @@ const TabNavigator = () => {
                     tabBarIcon: ({ focused }) => <TabIcon icon="user-alt" label="" focused={focused} />
                 }}
             />
+
         </Tab.Navigator>
     )
 }
@@ -55,7 +64,7 @@ export default TabNavigator
 
 const styles = StyleSheet.create({
     tabBar: {
-        backgroundColor: colors.backGroundBase ,
+        backgroundColor: colors.backGroundBase,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

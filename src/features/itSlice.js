@@ -6,6 +6,7 @@ const initialState = {
         products: [],
         tareasPendientes: [],
         tareasFinalizadas: [],
+        alertasRecibidas: [],
         nuevaTareaFinalizada : [],
         nuevaTareaSuspendida: [],
         tareasSuspendidas: [],
@@ -30,6 +31,9 @@ export const itSlice = createSlice({
     reducers: {
         setProducts: (state, action) => {
             state.value.products = action.payload
+        },
+        setAlertas: (state, action) => {
+            state.value.alertasRecibidas = action.payload
         },
         setMediosPago: (state, action) => {
             const nuevosMediosPago = action.payload.map(({ value, label }) => ({ value, label }));
@@ -117,6 +121,6 @@ export const itSlice = createSlice({
     }
 })
 
-export const { equipoUsado, estadoTarea, setProducts,datosTareaFinalizada, limpiarDatosTareafinalizada,datosArrayTareasFinalizadas,setMediosPago, nuevaTareaSuspendida, setTareasPendientes, setTareasFinalizadas, limpiarTareaFinalizada, limpiarTareaSuspendida} = itSlice.actions
+export const { equipoUsado, estadoTarea, setProducts,datosTareaFinalizada, setAlertas, limpiarDatosTareafinalizada,datosArrayTareasFinalizadas,setMediosPago, nuevaTareaSuspendida, setTareasPendientes, setTareasFinalizadas, limpiarTareaFinalizada, limpiarTareaSuspendida} = itSlice.actions
 
 export default itSlice.reducer
