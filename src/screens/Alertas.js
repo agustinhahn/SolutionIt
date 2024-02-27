@@ -63,21 +63,31 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: colors.backGroundBase,
-        marginBottom: 50,
-        flexGrow: 1
+        marginBottom: 70,
+        flexGrow: 1,
     },
     centeredContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 10
     },
     alertView: {
-        padding: 20,
+        padding: 16,
         marginTop: 20,
         minHeight: 40,
         backgroundColor: colors.lightBlue8,
         textAlignVertical: "center",
-        marginVertical: 10
+        marginVertical: 10,
+        borderRadius: 5,  
+        elevation: 10,  
+        shadowColor: colors.lightBlue6,
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
     },
     textAlert:{
         fontSize: 20,

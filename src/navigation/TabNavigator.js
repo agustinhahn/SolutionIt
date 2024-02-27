@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../screens/Home'
 import TabIcon from '../components/TabIcon';
 import StockStack from './StockStack';
 import InfoStack from './InfoStack';
